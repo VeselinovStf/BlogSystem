@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BS.Data.EFContext;
 using BS.Identity.Manager.SignInManager.Wrapper.Abstract;
 using BS.Identity.Manager.SignInManagerUtility;
 using BS.Identity.Manager.UserManager.Wrapper.Abstract;
@@ -9,11 +10,15 @@ using BS.Identity.Manager.UserManagerUtility;
 using BS.Identity.Models;
 using BS.Identity.Service.BaseIdentityUserService;
 using BS.Identity.Service.BaseIdentityUserService.Abstract;
+using DateTimeProvider;
+using DateTimeWrapper.Abstract;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 
@@ -21,12 +26,14 @@ namespace BS.Web
 {
     public class Startup
     {
-        public Startup(IConfiguration configuration)
+        public Startup(IConfiguration configuration, IHostingEnvironment env)
         {
-            Configuration = configuration;
+            this.Configuration = configuration;
+            this.Environment = env;
         }
 
         public IConfiguration Configuration { get; }
+        public IHostingEnvironment Environment { get; }
 
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
@@ -38,8 +45,39 @@ namespace BS.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
+            ConfigureDb(services);
+            ConfigureIdentity(services);
             ConfigureAppService(services);
+            ConfigureAppWrapperService(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private void ConfigureDb(IServiceCollection services)
+        {
+            if (Environment.IsDevelopment())
+            {
+                services.AddDbContext<BlogSystemEFDbContext>(options =>
+                 options.UseSqlServer(
+                   Configuration.GetConnectionString("DevelopmentConnectionString")));
+            }
+            else
+            {
+                services.AddDbContext<BlogSystemEFDbContext>(options =>
+                 options.UseSqlServer(
+                   Configuration.GetConnectionString("ProductionConnectionString")));
+            }
+        }
+
+        private void ConfigureIdentity(IServiceCollection services)
+        {
+            services.AddIdentity<BaseIdentityUser, IdentityRole>()
+                .AddEntityFrameworkStores<BlogSystemEFDbContext>()
+                .AddDefaultTokenProviders();
+        }
+
+        private void ConfigureAppWrapperService(IServiceCollection services)
+        {
+            services.AddScoped<IDateTimeWrapper, ExactDateTimeNowProvider>();
         }
 
         private void ConfigureAppService(IServiceCollection services)

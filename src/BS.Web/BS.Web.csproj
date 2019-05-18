@@ -23,6 +23,7 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\BS.Data.EFContext\BS.Data.EFContext.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManager.Wrapper.Abstract\BS.Identity.Manager.SignInManager.Wrapper.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManagerUtility\BS.Identity.Manager.SignInManagerUtility.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.UserManager.Wrapper.Abstract\BS.Identity.Manager.UserManager.Wrapper.Abstract.csproj" />
@@ -31,6 +32,8 @@
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj" />
     <ProjectReference Include="..\BS.WEB.ViewModels\BS.WEB.ViewModels.csproj" />
+    <ProjectReference Include="..\DateTimeProvider\DateTimeProvider.csproj" />
+    <ProjectReference Include="..\DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj" />
   </ItemGroup>
 
 </Project>
