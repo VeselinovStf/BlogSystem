@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace BS.Web.ViewComponents.HomoController
+namespace BS.Web.ViewComponents.HomeController
 {
     public class PageHeaderViewComponent : ViewComponent
     {

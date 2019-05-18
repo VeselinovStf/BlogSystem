@@ -2,6 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BS.Identity.Manager.UserManager.Wrapper.Abstract;
+using BS.Identity.Manager.UserManagerUtility;
+using BS.Identity.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -31,8 +34,13 @@ namespace BS.Web
                 options.MinimumSameSitePolicy = SameSiteMode.None;
             });
 
-
+            ConfigureAppService(services);
             services.AddMvc().SetCompatibilityVersion(CompatibilityVersion.Version_2_2);
+        }
+
+        private void ConfigureAppService(IServiceCollection services)
+        {
+            services.AddScoped<IUserManagerWrapper<BaseIdentityUser>, UserManagerUtility>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
