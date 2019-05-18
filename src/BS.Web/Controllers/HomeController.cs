@@ -5,6 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BS.Web.Models;
+using BS.WEB.ViewModels.ViewComponents;
 
 namespace BS.Web.Controllers
 {
@@ -12,12 +13,28 @@ namespace BS.Web.Controllers
     {
         public IActionResult Index()
         {
-            return View();
+            HomeControllerPageViewModel returnModel =
+                new HomeControllerPageViewModel()
+                {
+                    BackgroundImage = "home-bg.jpg",
+                    HeaderTitle = "Wellcome",
+                    PageTitle = "BS Home Page"
+                };
+
+            return View(returnModel);
         }
 
         public IActionResult About()
         {
-            return View();
+            HomeControllerPageViewModel returnModel =
+                new HomeControllerPageViewModel()
+                {
+                    BackgroundImage = "about-bg.jpg",
+                    HeaderTitle = "About BS",
+                    PageTitle = "BS About Page"
+                };
+
+            return View(returnModel);
         }
         public IActionResult Privacy()
         {
