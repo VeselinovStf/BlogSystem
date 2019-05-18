@@ -17,7 +17,7 @@ namespace BS.Web.Controllers
                 new HomeControllerPageViewModel()
                 {
                     BackgroundImage = "home-bg.jpg",
-                    HeaderTitle = "Wellcome",
+                    HeaderTitle = "Welcome",
                     PageTitle = "BS Home Page"
                 };
 
@@ -33,6 +33,19 @@ namespace BS.Web.Controllers
                     HeaderTitle = "About BS",
                     PageTitle = "BS About Page"
                 };
+
+            return View(returnModel);
+        }
+
+        public IActionResult Contact()
+        {
+            HomeControllerPageViewModel returnModel =
+               new HomeControllerPageViewModel()
+               {
+                   BackgroundImage = "contact-bg.jpg",
+                   HeaderTitle = "Contact",
+                   PageTitle = "BS About Page"
+               };
 
             return View(returnModel);
         }
