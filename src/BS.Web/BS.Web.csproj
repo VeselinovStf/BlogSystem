@@ -31,6 +31,8 @@
     <ProjectReference Include="..\BS.Identity.Models\BS.Identity.Models.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj" />
+    <ProjectReference Include="..\BS.WEB.AccountControllerValidation.Abstract\BS.WEB.AccountControllerValidation.Abstract.csproj" />
+    <ProjectReference Include="..\BS.WEB.AccountControllerValidation\BS.WEB.AccountControllerValidation.csproj" />
     <ProjectReference Include="..\BS.WEB.ViewModels\BS.WEB.ViewModels.csproj" />
     <ProjectReference Include="..\DateTimeProvider\DateTimeProvider.csproj" />
     <ProjectReference Include="..\DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj" />

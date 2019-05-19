@@ -10,6 +10,10 @@ using BS.Identity.Manager.UserManagerUtility;
 using BS.Identity.Models;
 using BS.Identity.Service.BaseIdentityUserService;
 using BS.Identity.Service.BaseIdentityUserService.Abstract;
+using BS.Web.Utilities.LocalRedirector;
+using BS.Web.Utilities.LocalRedirector.Abstract;
+using BS.WEB.AccountControllerValidation;
+using BS.WEB.AccountControllerValidation.Abstract;
 using DateTimeProvider;
 using DateTimeWrapper.Abstract;
 using Microsoft.AspNetCore.Builder;
@@ -73,6 +77,11 @@ namespace BS.Web
             services.AddIdentity<BaseIdentityUser, IdentityRole>()
                 .AddEntityFrameworkStores<BlogSystemEFDbContext>()
                 .AddDefaultTokenProviders();
+
+            services.AddScoped<IUserManagerWrapper<BaseIdentityUser>, UserManagerUtility>();
+            services.AddScoped<ISignInManagerWrapper<BaseIdentityUser>, SignInManagerUtility>();
+            services.AddScoped<IBaseIdentityUserService, BaseIdentityUserService>();
+            services.AddScoped<IAccountControllerValidation, AccountControllerValidation>();
         }
 
         private void ConfigureAppWrapperService(IServiceCollection services)
@@ -82,9 +91,7 @@ namespace BS.Web
 
         private void ConfigureAppService(IServiceCollection services)
         {
-            services.AddScoped<IUserManagerWrapper<BaseIdentityUser>, UserManagerUtility>();
-            services.AddScoped<ISignInManagerWrapper<BaseIdentityUser>, SignInManagerUtility>();
-            services.AddScoped<IBaseIdentityUserService, BaseIdentityUserService>();
+            services.AddScoped<ILocalRedirector, LocalRedirector>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
