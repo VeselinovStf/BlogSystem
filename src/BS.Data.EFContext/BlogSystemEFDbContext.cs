@@ -1,4 +1,7 @@
-﻿using BS.Data.Models.Abstract.EntityBase;
+﻿using BS.Data.EFContext.ModelsConfig;
+using BS.Data.Models;
+using BS.Data.Models.Abstract.Author;
+using BS.Data.Models.Abstract.EntityBase;
 using BS.Identity.Models;
 using DateTimeWrapper.Abstract;
 using Microsoft.AspNetCore.Identity;
@@ -14,6 +17,11 @@ namespace BS.Data.EFContext
     public class BlogSystemEFDbContext : IdentityDbContext<BaseIdentityUser>
     {
         private readonly IDateTimeWrapper dateTimeProvider;
+
+        public DbSet<Author> Authors { get; set; }
+        public DbSet<BlogPost> BlogPosts { get; set; }
+        public DbSet<BlogPostTag> BlogPostTag { get; set; }
+        public DbSet<Tag> Tags { get; set; }
 
         public BlogSystemEFDbContext(DbContextOptions<BlogSystemEFDbContext> options, IDateTimeWrapper dateTimeProvider)
             : base(options)
@@ -32,8 +40,11 @@ namespace BS.Data.EFContext
 
         private void ApplyModelConfigurations(ModelBuilder builder)
         {
-           // builder.ApplyConfiguration(new X());
-         
+           builder.ApplyConfiguration(new AuthorConfig());
+           builder.ApplyConfiguration(new BlogPostConfig());
+           builder.ApplyConfiguration(new BlogPostTagConfig());
+           builder.ApplyConfiguration(new TagConfig());
+
         }
 
         public override int SaveChanges()

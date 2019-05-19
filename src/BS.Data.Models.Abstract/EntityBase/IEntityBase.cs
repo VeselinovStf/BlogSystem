@@ -2,7 +2,7 @@
 
 namespace BS.Data.Models.Abstract.EntityBase
 {
-    public interface IEntityBase 
+    public interface IEntityBase : IDeletable, IModifiable
     {
         int Id { get; set; }
     }

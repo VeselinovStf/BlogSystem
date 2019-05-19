@@ -47,43 +47,51 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Models", "BS.Id
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Manager.UserManagerUtility", "BS.Identity.Manager.UserManagerUtility\BS.Identity.Manager.UserManagerUtility.csproj", "{EC859069-FA32-45F0-98AB-7DB0148BCE14}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Identity.Manager.SignInManagerUtility", "BS.Identity.Manager.SignInManagerUtility\BS.Identity.Manager.SignInManagerUtility.csproj", "{05D741E5-9FD8-41B7-A4F5-78C8BB13C188}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Manager.SignInManagerUtility", "BS.Identity.Manager.SignInManagerUtility\BS.Identity.Manager.SignInManagerUtility.csproj", "{05D741E5-9FD8-41B7-A4F5-78C8BB13C188}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Manager.SignInManager.Wrapper.Abstract", "BS.Identity.Manager.SignInManager.Wrapper.Abstract\BS.Identity.Manager.SignInManager.Wrapper.Abstract.csproj", "{D4D567E6-B55D-4081-876B-0AA2F5A6845E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Identity.Service.BaseIdentityUserService.Abstract", "BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj", "{BE474168-C786-42DE-9835-D1039B08F1AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Service.BaseIdentityUserService.Abstract", "BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj", "{BE474168-C786-42DE-9835-D1039B08F1AD}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Identity.Service.BaseIdentityUserService", "BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj", "{35183FDB-9E43-43C0-8A71-3F7B51E15798}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Identity.Service.BaseIdentityUserService", "BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj", "{35183FDB-9E43-43C0-8A71-3F7B51E15798}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Models", "Models", "{A3E60845-3199-4440-987F-D55C9289A559}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "EfContext", "EfContext", "{7214D9CC-2B3E-4CF6-95BC-5B784E2C4FBA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.Models", "BS.Data.Models\BS.Data.Models.csproj", "{452FCDF3-1914-4C3C-B020-329C4EF248F8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.Models", "BS.Data.Models\BS.Data.Models.csproj", "{452FCDF3-1914-4C3C-B020-329C4EF248F8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.Models.Abstract", "BS.Data.Models.Abstract\BS.Data.Models.Abstract.csproj", "{EEECDCE9-5124-404D-BFDE-6AFA64387BE6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.Models.Abstract", "BS.Data.Models.Abstract\BS.Data.Models.Abstract.csproj", "{EEECDCE9-5124-404D-BFDE-6AFA64387BE6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EFContext", "BS.Data.EFContext\BS.Data.EFContext.csproj", "{2C1075E7-6402-4C1E-A78C-7D14E9D6A477}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.EFContext", "BS.Data.EFContext\BS.Data.EFContext.csproj", "{2C1075E7-6402-4C1E-A78C-7D14E9D6A477}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Wrappers", "Wrappers", "{AA5537D7-585E-4B21-A425-6E0C9A571363}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DateTime", "DateTime", "{50551518-364E-4892-BAF3-CB6CD00D37B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeWrapper.Abstract", "DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj", "{21CDA376-7910-44C3-ADBB-754BB896CFA1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeWrapper.Abstract", "DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj", "{21CDA376-7910-44C3-ADBB-754BB896CFA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DateTimeProvider", "DateTimeProvider\DateTimeProvider.csproj", "{513A57C5-4340-4AD0-9965-0FBBEF5E105E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeProvider", "DateTimeProvider\DateTimeProvider.csproj", "{513A57C5-4340-4AD0-9965-0FBBEF5E105E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ControllersValidation", "ControllersValidation", "{4FF25D1A-A1B7-4981-9877-C416EB955442}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Account", "Account", "{11AE4703-510B-447A-BD25-D00D44E8916F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.AccountControllerValidation.Abstract", "BS.WEB.AccountControllerValidation.Abstract\BS.WEB.AccountControllerValidation.Abstract.csproj", "{7A913A5E-A415-4D3E-9446-04B82D6882BF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.AccountControllerValidation.Abstract", "BS.WEB.AccountControllerValidation.Abstract\BS.WEB.AccountControllerValidation.Abstract.csproj", "{7A913A5E-A415-4D3E-9446-04B82D6882BF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.AccountControllerValidation", "BS.WEB.AccountControllerValidation\BS.WEB.AccountControllerValidation.csproj", "{7F3E6E06-48F2-46BE-81ED-E1CD826472BD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.AccountControllerValidation", "BS.WEB.AccountControllerValidation\BS.WEB.AccountControllerValidation.csproj", "{7F3E6E06-48F2-46BE-81ED-E1CD826472BD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Exceptions", "Exceptions", "{5583251F-ED55-44FA-A4E1-9BBBADE76B82}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.ControllerValidation.Exceptions", "BS.WEB.ControllerValidation.Exceptions\BS.WEB.ControllerValidation.Exceptions.csproj", "{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.ControllerValidation.Exceptions", "BS.WEB.ControllerValidation.Exceptions\BS.WEB.ControllerValidation.Exceptions.csproj", "{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FA7B458E-4C92-45D2-BB60-8201720A0183}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{31206A6C-7D88-44AD-86C3-7943E969B30F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EFContext.ModelsConfig", "BS.Data.EFContext.ModelsConfig\BS.Data.EFContext.ModelsConfig.csproj", "{0D682CBA-537F-4CC4-B906-078AFDB4AF06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EFContext.ModelConfig.Abstract", "BS.Data.EFContext.ModelConfig.Abstract\BS.Data.EFContext.ModelConfig.Abstract.csproj", "{FB19825B-5155-4F22-888F-7DCBABFBB0EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -163,6 +171,14 @@ Global
 		{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0D682CBA-537F-4CC4-B906-078AFDB4AF06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D682CBA-537F-4CC4-B906-078AFDB4AF06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D682CBA-537F-4CC4-B906-078AFDB4AF06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D682CBA-537F-4CC4-B906-078AFDB4AF06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FB19825B-5155-4F22-888F-7DCBABFBB0EC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FB19825B-5155-4F22-888F-7DCBABFBB0EC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FB19825B-5155-4F22-888F-7DCBABFBB0EC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FB19825B-5155-4F22-888F-7DCBABFBB0EC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -193,7 +209,7 @@ Global
 		{7214D9CC-2B3E-4CF6-95BC-5B784E2C4FBA} = {79AE95B2-F78F-4F06-9731-14C7846B071E}
 		{452FCDF3-1914-4C3C-B020-329C4EF248F8} = {A3E60845-3199-4440-987F-D55C9289A559}
 		{EEECDCE9-5124-404D-BFDE-6AFA64387BE6} = {A3E60845-3199-4440-987F-D55C9289A559}
-		{2C1075E7-6402-4C1E-A78C-7D14E9D6A477} = {7214D9CC-2B3E-4CF6-95BC-5B784E2C4FBA}
+		{2C1075E7-6402-4C1E-A78C-7D14E9D6A477} = {FA7B458E-4C92-45D2-BB60-8201720A0183}
 		{AA5537D7-585E-4B21-A425-6E0C9A571363} = {09D9AB05-8F3A-4526-897C-292839D51D26}
 		{50551518-364E-4892-BAF3-CB6CD00D37B3} = {AA5537D7-585E-4B21-A425-6E0C9A571363}
 		{21CDA376-7910-44C3-ADBB-754BB896CFA1} = {50551518-364E-4892-BAF3-CB6CD00D37B3}
@@ -204,6 +220,10 @@ Global
 		{7F3E6E06-48F2-46BE-81ED-E1CD826472BD} = {11AE4703-510B-447A-BD25-D00D44E8916F}
 		{5583251F-ED55-44FA-A4E1-9BBBADE76B82} = {4FF25D1A-A1B7-4981-9877-C416EB955442}
 		{FA64DBDD-EBC7-46F4-A3D7-2EDAA51D03A1} = {5583251F-ED55-44FA-A4E1-9BBBADE76B82}
+		{FA7B458E-4C92-45D2-BB60-8201720A0183} = {7214D9CC-2B3E-4CF6-95BC-5B784E2C4FBA}
+		{31206A6C-7D88-44AD-86C3-7943E969B30F} = {7214D9CC-2B3E-4CF6-95BC-5B784E2C4FBA}
+		{0D682CBA-537F-4CC4-B906-078AFDB4AF06} = {31206A6C-7D88-44AD-86C3-7943E969B30F}
+		{FB19825B-5155-4F22-888F-7DCBABFBB0EC} = {31206A6C-7D88-44AD-86C3-7943E969B30F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6E7ECC-E7D3-429D-940B-075E25E41A0F}
