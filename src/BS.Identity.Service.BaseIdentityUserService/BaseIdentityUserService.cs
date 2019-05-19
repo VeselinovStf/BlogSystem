@@ -41,9 +41,9 @@ namespace BS.Identity.Service.BaseIdentityUserService
             return await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure);
         }
 
-       
+      
 
-        public async Task SignOutAsync()
+            public async Task SignOutAsync()
         {
             await _signInManager.SignOutAsync();
         }

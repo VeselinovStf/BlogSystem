@@ -67,7 +67,7 @@ namespace BS.Web.Controllers
 
                     this._logger.LogInformation(controllerValidatorCall);
 
-                    return RedirectToLocal("Index", "Home", );
+                    return RedirectToLocal("Index", "Home");
                 }
                 catch (Exception ex)
                 {
