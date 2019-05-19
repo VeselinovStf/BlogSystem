@@ -16,14 +16,10 @@ namespace BS.Identity.Manager.SignInManagerUtility
             this._signInManager = signInManager ?? throw new ArgumentNullException(nameof(signInManager));
         }
 
-        public async Task SignInAsync(BaseIdentityUser user, bool isPersistent)
-        {
-            await _signInManager.SignInAsync(user, isPersistent: false);
-        }
-
         public async Task<SignInResult> PasswordSignInAsync(string email, string password, bool rememberMe, bool lockoutOnFailure)
         {
-            return await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: lockoutOnFailure);
+                return await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure: lockoutOnFailure);
+          
         }
 
         public async Task SignOutAsync()
@@ -31,19 +27,10 @@ namespace BS.Identity.Manager.SignInManagerUtility
             await _signInManager.SignOutAsync();
         }
 
-        public async Task RefreshSignInAsync(BaseIdentityUser user)
-        {
-            await this._signInManager.RefreshSignInAsync(user);
-        }
-
+      
         public bool IsSignedIn(ClaimsPrincipal user)
         {
             return this._signInManager.IsSignedIn(user);
-        }
-
-        public async Task<ClaimsPrincipal> CreateUserPrincipalAsync(BaseIdentityUser user)
-        {
-            return await this._signInManager.CreateUserPrincipalAsync(user);
         }
     }
 }

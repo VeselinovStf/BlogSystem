@@ -31,11 +31,7 @@ namespace BS.Identity.Service.BaseIdentityUserService
             return await this._userManager.GetRolesAsync(user);
         }
 
-        public async Task<bool> IsEmailConfirmedAsync(BaseIdentityUser user)
-        {
-            return await _userManager.IsEmailConfirmedAsync(user);
-        }
-
+   
         public async Task<SignInResult> PasswordSignInAsync(string email, string password, bool rememberMe, bool lockoutOnFailure)
         {
             return await _signInManager.PasswordSignInAsync(email, password, rememberMe, lockoutOnFailure);

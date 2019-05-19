@@ -9,12 +9,12 @@ namespace BS.Web.ViewComponents.HomeController
 {
     public class PageHeaderViewComponent : ViewComponent
     {
-        public async Task<IViewComponentResult> InvokeAsync(HomeControllerPageViewModel model)
+        public async Task<IViewComponentResult> InvokeAsync(PageHeaderViewModel model)
         {
             if (ModelState.IsValid)
             {
-                HomeControllerPageViewModel returnModel =
-                    new HomeControllerPageViewModel()
+                PageHeaderViewModel returnModel =
+                    new PageHeaderViewModel()
                     {
                         BackgroundImage = model.BackgroundImage,
                         HeaderTitle = model.HeaderTitle,

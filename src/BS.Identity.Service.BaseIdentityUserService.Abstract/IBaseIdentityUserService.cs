@@ -13,6 +13,6 @@ namespace BS.Identity.Service.BaseIdentityUserService.Abstract
         Task<BaseIdentityUser> FindByEmailAsync(string email);
         Task<IList<string>> GetRolesAsync(BaseIdentityUser user);
         Task SignOutAsync();
-        Task<bool> IsEmailConfirmedAsync(BaseIdentityUser user);
+       
     }
 }

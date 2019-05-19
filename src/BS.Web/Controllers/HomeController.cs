@@ -13,8 +13,8 @@ namespace BS.Web.Controllers
     {
         public IActionResult Index()
         {
-            HomeControllerPageViewModel returnModel =
-                new HomeControllerPageViewModel()
+            PageHeaderViewModel returnModel =
+                new PageHeaderViewModel()
                 {
                     BackgroundImage = "home-bg.jpg",
                     HeaderTitle = "Welcome",
@@ -26,8 +26,8 @@ namespace BS.Web.Controllers
 
         public IActionResult About()
         {
-            HomeControllerPageViewModel returnModel =
-                new HomeControllerPageViewModel()
+            PageHeaderViewModel returnModel =
+                new PageHeaderViewModel()
                 {
                     BackgroundImage = "about-bg.jpg",
                     HeaderTitle = "About BS",
@@ -39,8 +39,8 @@ namespace BS.Web.Controllers
 
         public IActionResult Contact()
         {
-            HomeControllerPageViewModel returnModel =
-               new HomeControllerPageViewModel()
+            PageHeaderViewModel returnModel =
+               new PageHeaderViewModel()
                {
                    BackgroundImage = "contact-bg.jpg",
                    HeaderTitle = "Contact",

@@ -9,6 +9,6 @@ namespace BS.WEB.AccountControllerValidation.Abstract
 
         Task<string> SignOutAsync();
 
-        Task<bool> ForgotPassword(string userEmail);
+        
     }
 }

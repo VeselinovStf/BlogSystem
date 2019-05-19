@@ -17,7 +17,7 @@ namespace BS.Web.Utilities.LocalRedirector
             }
             else
             {
-                return controllerBase.RedirectToAction(actionName, controllerName, new { area = areaName });
+                return controllerBase.RedirectToAction(actionName, controllerName);
             }
         }
     }

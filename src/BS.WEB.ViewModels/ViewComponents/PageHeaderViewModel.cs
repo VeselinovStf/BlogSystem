@@ -5,7 +5,7 @@ using System.Text;
 
 namespace BS.WEB.ViewModels.ViewComponents
 {
-    public class HomeControllerPageViewModel : IBasePageViewModel
+    public class PageHeaderViewModel : IBasePageViewModel
     {
         public string PageTitle { get; set; }
         public string BackgroundImage { get; set; }

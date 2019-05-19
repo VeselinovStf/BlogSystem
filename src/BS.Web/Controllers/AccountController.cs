@@ -1,7 +1,9 @@
 ﻿using BS.Identity.Service.BaseIdentityUserService.Abstract;
 using BS.Web.Utilities.LocalRedirector.Abstract;
 using BS.WEB.AccountControllerValidation.Abstract;
+using BS.WEB.ControllerValidation.Exceptions;
 using BS.WEB.ViewModels.Identity;
+using BS.WEB.ViewModels.ViewComponents;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -47,9 +49,15 @@ namespace BS.Web.Controllers
                 throw new ArgumentException(ex.Message);
             }
 
+            LoginViewModel model = new LoginViewModel()
+            {
+                BackgroundImage = "",
+                PageTitle = "Admin Login",
+                HeaderTitle = "Admin Login"
+            };
           
             ViewData["ReturnUrl"] = returnUrl;
-            return View();
+            return View(model);
         }
 
         [HttpPost]
@@ -68,12 +76,14 @@ namespace BS.Web.Controllers
                     this._logger.LogInformation(controllerValidatorCall);
 
                     return RedirectToLocal("Index", "Home");
-                }
+                }              
                 catch (Exception ex)
                 {
                     this._logger.LogError(ex.Message);
 
-                    throw new ArgumentException(ex.Message);
+                    model.ErrorMessage = ex.Message;
+
+                    return View(model);
                 }
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
@@ -98,7 +108,14 @@ namespace BS.Web.Controllers
                 }
                 else
                 {
-                    return View();
+                    PageHeaderViewModel model = new PageHeaderViewModel()
+                    {
+                        BackgroundImage = "",
+                        PageTitle = "LogOut",
+                        HeaderTitle = "LogOut"
+                    };
+
+                    return View(model);
                 }
             }
             catch (Exception ex)
@@ -112,71 +129,32 @@ namespace BS.Web.Controllers
 
         public IActionResult AccessDenied()
         {
-            return View();
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult ExternalLogin()
-        {
-            return RedirectToLocal("Login");
-        }
-
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult ForgotPassword()
-        {
-            return View();
-        }
-
-        [HttpPost]
-        [AllowAnonymous]
-        public async Task<IActionResult> ForgotPassword(ForgotPasswordViewModel model)
-        {
-            if (ModelState.IsValid)
+            PageHeaderViewModel model = new PageHeaderViewModel()
             {
-                try
-                {
-                    if(await this._accountControllerValidation.ForgotPassword(model.Email))
-                    {
-                        this._logger.LogInformation("User valid - Confirm Forgotted Password");
-
-                        return RedirectToAction(nameof(ForgotPasswordConfirmation));
-                    }
-                    else
-                    {
-                        this._logger.LogError("Can't find user for forgoten password confirmation");
-
-                        return View(model);
-                    }
-                }
-                catch (Exception ex)
-                {
-                    this._logger.LogError(ex.Message);
-
-                    throw new ArgumentException("Can't change forgoten password");
-                }
-
-                // For more information on how to enable account confirmation and password reset please
-                // visit https://go.microsoft.com/fwlink/?LinkID=532713
-                
-            }
+                BackgroundImage = "",
+                PageTitle = "Access Denied",
+                HeaderTitle = "Access is Denied"
+            };
 
             return View(model);
         }
 
-        [HttpGet]
-        [AllowAnonymous]
-        public IActionResult ForgotPasswordConfirmation()
-        {
-            return View();
-        }
+      
+
+
 
         [HttpGet]
         [AllowAnonymous]
         public IActionResult Lockout()
         {
-            return View();
+            LoginViewModel model = new LoginViewModel()
+            {
+                BackgroundImage = "",
+                PageTitle = "Lockout",
+                HeaderTitle = "You account is Lockout"
+            };
+
+            return View(model);
         }
 
         private IActionResult RedirectToLocal(string returnUrl, string controller = "Home", string action = "Index", string area = "")

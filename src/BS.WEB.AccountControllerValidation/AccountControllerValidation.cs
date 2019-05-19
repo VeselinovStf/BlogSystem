@@ -70,20 +70,7 @@ namespace BS.WEB.AccountControllerValidation
            
         }
 
-        public async Task<bool> ForgotPassword(string userEmail)
-        {
-            var user = await this.identityService.FindByEmailAsync(userEmail);
-            if (user == null || !(await this.identityService.IsEmailConfirmedAsync(user)))
-            {
-                // Don't reveal that the user does not exist or is not confirmed
-                throw new ForgotenPasswordException("User does not exist or is not confirmed");
-            }
-
-            // For more information on how to enable account confirmation and password reset please
-            // visit https://go.microsoft.com/fwlink/?LinkID=532713
-
-            return true;
-        }
+     
     }
     
 }

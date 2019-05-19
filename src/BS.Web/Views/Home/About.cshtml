@@ -1,6 +1,8 @@
-﻿@model HomeControllerPageViewModel
+﻿@model PageHeaderViewModel
 @await Component.InvokeAsync("PageHeader", new { model = Model })
-
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
 <!-- Main Content -->
 <div class="container">
     <div class="row">
