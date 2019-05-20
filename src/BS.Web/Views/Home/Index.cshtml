@@ -1,9 +1,36 @@
-﻿@model PageHeaderViewModel
-@await Component.InvokeAsync("PageHeader", new { model = Model })
+﻿@model BlogPostSetViewModel
+@await Component.InvokeAsync("PageHeader",
+    new
+    {
+        model = new PageHeaderViewModel()
+        {
+            BackgroundImage = Model.BackgroundImage,
+        HeaderTitle = Model.HeaderTitle,
+        PageTitle = Model.PageTitle
+        }
+    })
 @{
     ViewData["Title"] = Model.PageTitle;
 }
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Home PAGE</p>
+
+<div class="row">
+    <div class="col-lg-8 col-md-10 mx-auto">
+        @foreach (var item in Model.Posts)
+        {
+            <div class="post-preview">
+                <a href="post.html">
+                    <h2 class="post-title">
+                        @item.Title
+                    </h2>
+                    <h3 class="post-subtitle">
+                        @item.Content
+                    </h3>
+                </a>
+                <p class="post-meta">
+                    Posted by
+                    <p >@item.Author</p>
+                </p>
+            </div>
+        }
+        </div>
 </div>

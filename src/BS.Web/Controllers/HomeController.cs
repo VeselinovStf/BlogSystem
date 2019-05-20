@@ -6,22 +6,35 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using BS.Web.Models;
 using BS.WEB.ViewModels.ViewComponents;
+using BS.Services.BlogPostService.Abstract;
+using BS.WEB.ModelFactory.Abstract;
+using BS.Services.BlogPostService.ModelDTO;
+using BS.WEB.ViewModels.BlogPost;
 
 namespace BS.Web.Controllers
 {
     public class HomeController : Controller
     {
-        public IActionResult Index()
-        {
-            PageHeaderViewModel returnModel =
-                new PageHeaderViewModel()
-                {
-                    BackgroundImage = "home-bg.jpg",
-                    HeaderTitle = "Welcome",
-                    PageTitle = "BS Home Page"
-                };
+        private readonly IBlogPostService blogPostService;
+        private readonly IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>> blogPostListModelFactory;
 
-            return View(returnModel);
+        public HomeController(IBlogPostService blogPostService, IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>> blogPostListModelFactory)
+        {
+            this.blogPostService = blogPostService;
+            this.blogPostListModelFactory = blogPostListModelFactory;
+        }
+
+        public async Task<IActionResult> Index()
+        {
+            var serviceCall = await this.blogPostService.GetAll();
+
+            var model = this.blogPostListModelFactory.Create(serviceCall);
+
+            model.BackgroundImage = "home-bg.jpg";
+            model.HeaderTitle = "Welcome";
+            model.PageTitle = "BS Home Page";
+                
+            return View(model);
         }
 
         public IActionResult About()

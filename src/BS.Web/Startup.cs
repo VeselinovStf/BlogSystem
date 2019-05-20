@@ -2,7 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BS.Data.BlogPostsRepository;
 using BS.Data.EFContext;
+using BS.Data.EntityRepository.Abstract;
+using BS.Data.Models;
 using BS.Identity.Manager.SignInManager.Wrapper.Abstract;
 using BS.Identity.Manager.SignInManagerUtility;
 using BS.Identity.Manager.UserManager.Wrapper.Abstract;
@@ -10,10 +13,18 @@ using BS.Identity.Manager.UserManagerUtility;
 using BS.Identity.Models;
 using BS.Identity.Service.BaseIdentityUserService;
 using BS.Identity.Service.BaseIdentityUserService.Abstract;
+using BS.Services.BlogPostService;
+using BS.Services.BlogPostService.Abstract;
+using BS.Services.BlogPostService.ModelDTO;
+using BS.Services.BlogPostService.ModelFactory;
+using BS.Services.ModelFactory.Abstract;
 using BS.Web.Utilities.LocalRedirector;
 using BS.Web.Utilities.LocalRedirector.Abstract;
 using BS.WEB.AccountControllerValidation;
 using BS.WEB.AccountControllerValidation.Abstract;
+using BS.WEB.BlogPostModelFactory;
+using BS.WEB.ModelFactory.Abstract;
+using BS.WEB.ViewModels.BlogPost;
 using DateTimeProvider;
 using DateTimeWrapper.Abstract;
 using Microsoft.AspNetCore.Builder;
@@ -70,6 +81,8 @@ namespace BS.Web
                  options.UseSqlServer(
                    Configuration.GetConnectionString("ProductionConnectionString")));
             }
+
+            services.AddScoped<IEntityRepository<BlogPost>, BlogPostRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -92,6 +105,11 @@ namespace BS.Web
         private void ConfigureAppService(IServiceCollection services)
         {
             services.AddScoped<ILocalRedirector, LocalRedirector>();
+            services.AddScoped<IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>>, BlogPostListModelFactory>();
+            services.AddScoped<IBlogPostService, BlogPostService>();
+            services.AddScoped<IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>>, BlogPostModelFactory>();
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

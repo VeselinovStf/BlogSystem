@@ -23,7 +23,9 @@
 
 
   <ItemGroup>
+    <ProjectReference Include="..\BS.Data.BlogPostsRepository\BS.Data.BlogPostsRepository.csproj" />
     <ProjectReference Include="..\BS.Data.EFContext\BS.Data.EFContext.csproj" />
+    <ProjectReference Include="..\BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManager.Wrapper.Abstract\BS.Identity.Manager.SignInManager.Wrapper.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManagerUtility\BS.Identity.Manager.SignInManagerUtility.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.UserManager.Wrapper.Abstract\BS.Identity.Manager.UserManager.Wrapper.Abstract.csproj" />
@@ -31,8 +33,14 @@
     <ProjectReference Include="..\BS.Identity.Models\BS.Identity.Models.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogPostService.Abstract\BS.Services.BlogPostService.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogPostService.ModelDTO\BS.Services.BlogPostService.ModelDTO.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogPostService.ModelFactory\BS.Services.BlogPostService.ModelFactory.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogPostService\BS.Services.BlogPostService.csproj" />
     <ProjectReference Include="..\BS.WEB.AccountControllerValidation.Abstract\BS.WEB.AccountControllerValidation.Abstract.csproj" />
     <ProjectReference Include="..\BS.WEB.AccountControllerValidation\BS.WEB.AccountControllerValidation.csproj" />
+    <ProjectReference Include="..\BS.WEB.BlogPostModelFactory\BS.WEB.BlogPostModelFactory.csproj" />
+    <ProjectReference Include="..\BS.WEB.ModelFactory.Abstract\BS.WEB.ModelFactory.Abstract.csproj" />
     <ProjectReference Include="..\BS.WEB.ViewModels\BS.WEB.ViewModels.csproj" />
     <ProjectReference Include="..\DateTimeProvider\DateTimeProvider.csproj" />
     <ProjectReference Include="..\DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj" />
