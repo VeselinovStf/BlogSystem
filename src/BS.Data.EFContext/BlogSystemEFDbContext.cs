@@ -23,6 +23,7 @@ namespace BS.Data.EFContext
         public DbSet<BlogPost> BlogPosts { get; set; }
         public DbSet<BlogPostTag> BlogPostTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
+        public DbSet<BlogPostEditor> BlogPostEditors { get; set; }
 
         public BlogSystemEFDbContext(DbContextOptions<BlogSystemEFDbContext> options, IDateTimeWrapper dateTimeProvider)
             : base(options)
@@ -35,6 +36,7 @@ namespace BS.Data.EFContext
             builder.Entity<IdentityRole>().HasData(DefaultRolesDataSeed.SeedData());
             builder.Entity<Author>().HasData(AuthorDataSeed.SeedData());
             builder.Entity<BlogPost>().HasData(BlogPostDataSeed.SeedData());
+            builder.Entity<BlogPostEditor>().HasData(BlogPostEditorDataSeed.SeedData());
             builder.Entity<Tag>().HasData(TagDataSeed.SeedData());
             builder.Entity<BlogPostTag>().HasData(BlogPostTagDataSeed.SeedData());
 

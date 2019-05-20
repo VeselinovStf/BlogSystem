@@ -11,7 +11,9 @@ namespace BS.Data.EFContext.ModelsConfig
     {
         public void Configure(EntityTypeBuilder<BlogPost> builder)
         {
-          
+            builder.HasMany(p => p.PostEditors)
+                .WithOne(e => e.BlogPost)
+                .HasForeignKey(e => e.BlogPostId);
         }
     }
 }

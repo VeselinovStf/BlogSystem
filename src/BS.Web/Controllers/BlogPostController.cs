@@ -112,7 +112,7 @@ namespace BS.Web.Controllers
                     //TODO : SET THIS TO SERVICE
                     var user = await this.userManager.GetUserAsync(HttpContext.User);
 
-                    await this.blogPostService.Create( blogPost.Title, blogPost.Content, user.UserName, user.);
+                    await this.blogPostService.Create( blogPost.Title, blogPost.Content, user.UserName, user.Id);
 
                     return RedirectToLocal("Index", "Home");
                 }
@@ -150,8 +150,8 @@ namespace BS.Web.Controllers
                 var blogPost = this.editBlogPostModelFactory.Create(serviceCall);
 
                 blogPost.BackgroundImage = "";
-                blogPost.HeaderTitle = "Delete Post";
-                blogPost.PageTitle = "Delete Post";
+                blogPost.HeaderTitle = "Edit Post";
+                blogPost.PageTitle = "Edit Post";
 
                 return View(blogPost);
             }

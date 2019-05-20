@@ -12,12 +12,13 @@ namespace BS.Data.Models
         {
            
             this.BlogPostTag = new HashSet<BlogPostTag>();
+            this.PostEditors = new HashSet<BlogPostEditor>();
         }
 
         public int Id { get; set; }
         public string Title{ get; set; }
         public string CreatedBy{ get; set; }
-        public string LastEditedBy{ get; set; }
+        
         public string Content{ get; set; }            
         public bool IsDeleted{ get; set; }
         public DateTime? DeletedOn{ get; set; }
@@ -27,5 +28,6 @@ namespace BS.Data.Models
         public int AuthorId { get; set; }
         public Author Author { get; set; }
         public ICollection<BlogPostTag> BlogPostTag { get; set; }
+        public ICollection<BlogPostEditor> PostEditors { get; set; }
     }
 }

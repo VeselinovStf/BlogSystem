@@ -26,8 +26,10 @@ namespace BS.Data.BlogPostsRepository
                 .BlogPosts
                     .Include(p => p.Author.AppUser)
                     .Include(p => p.BlogPostTag)
-                    .ThenInclude(c => c.Tag)
+                        .ThenInclude(c => c.Tag)
+                    .Include(p => p.PostEditors)                        
                     .Where(p => !p.IsDeleted)
+                    .OrderBy(p => p.CreatedOn)
                     .ToListAsync();
         }
 
@@ -37,6 +39,7 @@ namespace BS.Data.BlogPostsRepository
                .Include(p => p.Author.AppUser)
                     .Include(p => p.BlogPostTag)
                     .ThenInclude(c => c.Tag)
+                    .Include(p => p.PostEditors)
                     .Where(p => !p.IsDeleted)
                .FirstOrDefaultAsync(m => m.Id == id);
         }

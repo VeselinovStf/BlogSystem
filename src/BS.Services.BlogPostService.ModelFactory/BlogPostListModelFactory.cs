@@ -22,7 +22,7 @@ namespace BS.Services.BlogPostService.ModelFactory
                 Content = m.Content,
                 CreatedBy = m.CreatedBy,
                 CreatedOn = m.CreatedOn,
-                LastEditedBy = m.LastEditedBy,
+                LastEditedBy = m.PostEditors.OrderBy(p => p.CreatedOn).First().EditorName,
                 ModifiedOn = m.ModifiedOn,
                 Title = m.Title
 

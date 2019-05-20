@@ -4,14 +4,16 @@ using BS.Data.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BS.Data.EFContext.Migrations
 {
     [DbContext(typeof(BlogSystemEFDbContext))]
-    partial class BlogSystemEFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190520185556_Updating Editing Seed Of BlogPostEdit")]
+    partial class UpdatingEditingSeedOfBlogPostEdit
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

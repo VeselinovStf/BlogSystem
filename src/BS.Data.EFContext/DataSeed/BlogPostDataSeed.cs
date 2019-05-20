@@ -20,7 +20,7 @@ namespace BS.Data.EFContext.DataSeed
                          Title = "Demo Post",
                          CreatedBy = "Admin 1",
                          CreatedOn = DateTime.Now,
-                         LastEditedBy = "Admin 1"
+                         
 
                     }
                 };

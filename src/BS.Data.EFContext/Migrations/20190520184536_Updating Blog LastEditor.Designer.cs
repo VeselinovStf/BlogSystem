@@ -4,14 +4,16 @@ using BS.Data.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BS.Data.EFContext.Migrations
 {
     [DbContext(typeof(BlogSystemEFDbContext))]
-    partial class BlogSystemEFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190520184536_Updating Blog LastEditor")]
+    partial class UpdatingBlogLastEditor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace BS.Data.EFContext.Migrations
                         {
                             Id = 1,
                             AppUserId = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
-                            CreatedOn = new DateTime(2019, 5, 20, 21, 55, 53, 12, DateTimeKind.Local).AddTicks(715),
+                            CreatedOn = new DateTime(2019, 5, 20, 21, 45, 32, 973, DateTimeKind.Local).AddTicks(5609),
                             IsDeleted = false
                         });
                 });
@@ -88,7 +90,7 @@ namespace BS.Data.EFContext.Migrations
                             AuthorId = 1,
                             Content = "This is a simple post content.",
                             CreatedBy = "Admin 1",
-                            CreatedOn = new DateTime(2019, 5, 20, 21, 55, 53, 85, DateTimeKind.Local).AddTicks(6894),
+                            CreatedOn = new DateTime(2019, 5, 20, 21, 45, 32, 991, DateTimeKind.Local).AddTicks(3720),
                             IsDeleted = false,
                             Title = "Demo Post"
                         });
@@ -123,8 +125,7 @@ namespace BS.Data.EFContext.Migrations
                         {
                             Id = 1,
                             BlogPostId = 1,
-                            CreatedOn = new DateTime(2019, 5, 20, 21, 55, 53, 96, DateTimeKind.Local).AddTicks(3841),
-                            EditorName = "Admin1",
+                            CreatedOn = new DateTime(2019, 5, 20, 21, 45, 32, 998, DateTimeKind.Local).AddTicks(795),
                             IsDeleted = false
                         });
                 });
@@ -178,14 +179,14 @@ namespace BS.Data.EFContext.Migrations
                         new
                         {
                             Id = 1,
-                            CreatedOn = new DateTime(2019, 5, 20, 21, 55, 53, 98, DateTimeKind.Local).AddTicks(8790),
+                            CreatedOn = new DateTime(2019, 5, 20, 21, 45, 33, 2, DateTimeKind.Local).AddTicks(6127),
                             IsDeleted = false,
                             Name = "First Tag"
                         },
                         new
                         {
                             Id = 2,
-                            CreatedOn = new DateTime(2019, 5, 20, 21, 55, 53, 99, DateTimeKind.Local).AddTicks(1171),
+                            CreatedOn = new DateTime(2019, 5, 20, 21, 45, 33, 2, DateTimeKind.Local).AddTicks(8329),
                             IsDeleted = false,
                             Name = "Second Tag"
                         });
@@ -246,16 +247,16 @@ namespace BS.Data.EFContext.Migrations
                         {
                             Id = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "3f3e219c-ba76-4c3d-934e-ae904dd84d84",
+                            ConcurrencyStamp = "256ff7fa-fed1-4584-8597-739342eda6f3",
                             Email = "admin1@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN1@MAIL.COM",
                             NormalizedUserName = "ADMIN1@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEBguXuNql6S2pUXokAtwltOcuuhMRQ8v7q1PpO59mE3CIqS31vmNIyXf9AGGDK/Cww==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHCMtgtQV++srFlxg18qgmHOT0HOaef++n0X1OQUS+72oT6lD//p/k4P8IPVzIt9Yw==",
                             PhoneNumber = "+359359",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c5f59bd1-5fdc-440e-ac38-156e2d1bd0e0",
+                            SecurityStamp = "0bdb386c-9698-4c6e-9510-c5baca433bd3",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
@@ -288,14 +289,14 @@ namespace BS.Data.EFContext.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "003a7539-d7ab-4924-bd5c-437ef27b419d",
+                            ConcurrencyStamp = "f0a1f8e7-387c-4864-953d-54c5ac57d052",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "c95985d2-0c9c-4b43-a59f-2decaa4a2e87",
+                            ConcurrencyStamp = "84514daf-91d6-4ee6-8acc-deceb26fc6f4",
                             Name = "NoRoleUser",
                             NormalizedName = "NoRoleUser"
                         });

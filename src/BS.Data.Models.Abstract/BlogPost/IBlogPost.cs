@@ -12,8 +12,6 @@ namespace BS.Data.Models.Abstract.BlogPost
 
         string CreatedBy { get; set; }
 
-        string LastEditedBy { get; set; }
-
         string Content { get; set; }
 
        

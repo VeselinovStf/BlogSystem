@@ -8,6 +8,7 @@ using DateTimeWrapper.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 
 namespace BS.Services.BlogPostService
@@ -45,22 +46,36 @@ namespace BS.Services.BlogPostService
 
             ServiceValidator.ServiceValidator.IsNull(author, "Object get fails.");
 
+            var editor = new BlogPostEditor()
+            {
+                CreatedOn = DateTime.Now,
+                EditorName = userName
+            };
+
             var newBlogPost = new BlogPost()
             {
                 AuthorId = author.Id,
                 CreatedBy = userName,
                 Content = content,
                 Title = title,
-                CreatedOn = this.dateTimeProvider.Now(),
-                LastEditedBy = userName,
+                CreatedOn = this.dateTimeProvider.Now(),               
                 ModifiedOn = this.dateTimeProvider.Now(),
-            };
+                 PostEditors = new List<BlogPostEditor>()
+                 {
+                      new BlogPostEditor()
+                      {
+                           CreatedOn = this.dateTimeProvider.Now(),
+                           EditorName = userName
+                      }
+                 }
+            };      
 
             ServiceValidator.ServiceValidator.IsNull(newBlogPost, "Object creation fails.");
 
             try
             {
                 await this.blogPostRepo.Add(newBlogPost);
+
             }
             catch(DbUpdateException ex)
             {
@@ -89,7 +104,14 @@ namespace BS.Services.BlogPostService
 
                 ServiceValidator.ServiceValidator.IsNull(blogPost, "Can't find Blog to edin.");
 
-                blogPost.LastEditedBy = userName;
+                var postEditor =   new BlogPostEditor()
+                {
+                    BlogPostId = blogPost.Id,
+                    CreatedOn = this.dateTimeProvider.Now(),
+                    EditorName = userName,
+                };
+
+                blogPost.PostEditors.Add(postEditor);
                 blogPost.Title = title;
                 blogPost.Content = content;
 

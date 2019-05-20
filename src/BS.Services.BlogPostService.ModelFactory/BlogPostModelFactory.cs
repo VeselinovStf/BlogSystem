@@ -24,7 +24,7 @@ namespace BS.Services.BlogPostService.ModelFactory
                 Content = inputType.Content,
                 CreatedBy = inputType.CreatedBy,
                 CreatedOn = inputType.CreatedOn,
-                LastEditedBy = inputType.LastEditedBy,
+                LastEditedBy = inputType.PostEditors.OrderBy(p => p.CreatedOn).First().EditorName,
                 ModifiedOn = inputType.ModifiedOn,
                 Title = inputType.Title
 
