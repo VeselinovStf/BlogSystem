@@ -4,14 +4,16 @@ using BS.Data.EFContext;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace BS.Data.EFContext.Migrations
 {
     [DbContext(typeof(BlogSystemEFDbContext))]
-    partial class BlogSystemEFDbContextModelSnapshot : ModelSnapshot
+    [Migration("20190520054142_Initial Blog Entityes with Author-Identity seed")]
+    partial class InitialBlogEntityeswithAuthorIdentityseed
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -48,7 +50,7 @@ namespace BS.Data.EFContext.Migrations
                         {
                             Id = 1,
                             AppUserId = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
-                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 981, DateTimeKind.Local).AddTicks(2474),
+                            CreatedOn = new DateTime(2019, 5, 20, 8, 41, 40, 213, DateTimeKind.Local).AddTicks(6865),
                             IsDeleted = false
                         });
                 });
@@ -82,19 +84,6 @@ namespace BS.Data.EFContext.Migrations
                     b.HasIndex("AuthorId");
 
                     b.ToTable("BlogPosts");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            AuthorId = 1,
-                            Content = "This is a simple post content.",
-                            CreatedBy = "Admin 1",
-                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 989, DateTimeKind.Local).AddTicks(6567),
-                            IsDeleted = false,
-                            LastEditedBy = "Admin 1",
-                            Title = "Demo Post"
-                        });
                 });
 
             modelBuilder.Entity("BS.Data.Models.BlogPostTag", b =>
@@ -108,18 +97,6 @@ namespace BS.Data.EFContext.Migrations
                     b.HasIndex("TagId");
 
                     b.ToTable("BlogPostTags");
-
-                    b.HasData(
-                        new
-                        {
-                            BlogPostId = 1,
-                            TagId = 1
-                        },
-                        new
-                        {
-                            BlogPostId = 1,
-                            TagId = 2
-                        });
                 });
 
             modelBuilder.Entity("BS.Data.Models.Tag", b =>
@@ -141,22 +118,6 @@ namespace BS.Data.EFContext.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Tags");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 991, DateTimeKind.Local).AddTicks(3367),
-                            IsDeleted = false,
-                            Name = "First Tag"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 992, DateTimeKind.Local).AddTicks(8644),
-                            IsDeleted = false,
-                            Name = "Second Tag"
-                        });
                 });
 
             modelBuilder.Entity("BS.Identity.Models.BaseIdentityUser", b =>
@@ -214,16 +175,16 @@ namespace BS.Data.EFContext.Migrations
                         {
                             Id = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "45bd6513-d020-4aac-9465-127f8a9aaf18",
+                            ConcurrencyStamp = "1aab1bac-7921-4e97-a001-b1ca4e798476",
                             Email = "admin1@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN1@MAIL.COM",
                             NormalizedUserName = "ADMIN1@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEDd7yDevgK2VjCB3wnAeqlAa0wjbXudPIZrNl1a8ZpqNVJ3ffjlGzgrF+DEDQwPH7A==",
+                            PasswordHash = "AQAAAAEAACcQAAAAELc6RPvdOT04nH9gQKZnXnpypKVpcq+WUYSoJNcEn+3YhdHO0HIM1S/QLTkjzGCGIQ==",
                             PhoneNumber = "+359359",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "c06fe3d6-1c0b-4126-836f-a3b768869b7c",
+                            SecurityStamp = "7d534a67-b0bb-473a-840b-53ea9145cd0e",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
@@ -256,14 +217,14 @@ namespace BS.Data.EFContext.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "68b4d47d-f571-49d0-8e0a-1975ed307560",
+                            ConcurrencyStamp = "f6c67902-eaf5-4e44-8aa3-d9b3f8a6f32d",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "4e11f7a5-a0fc-4e5c-8f88-e8ec28e3fc48",
+                            ConcurrencyStamp = "4622e86d-8359-4987-8b5f-bf3be0dea10b",
                             Name = "NoRoleUser",
                             NormalizedName = "NoRoleUser"
                         });

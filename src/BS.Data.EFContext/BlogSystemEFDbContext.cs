@@ -1,4 +1,5 @@
-﻿using BS.Data.EFContext.ModelsConfig;
+﻿using BS.Data.EFContext.DataSeed;
+using BS.Data.EFContext.ModelsConfig;
 using BS.Data.Models;
 using BS.Data.Models.Abstract.Author;
 using BS.Data.Models.Abstract.EntityBase;
@@ -20,7 +21,7 @@ namespace BS.Data.EFContext
 
         public DbSet<Author> Authors { get; set; }
         public DbSet<BlogPost> BlogPosts { get; set; }
-        public DbSet<BlogPostTag> BlogPostTag { get; set; }
+        public DbSet<BlogPostTag> BlogPostTags { get; set; }
         public DbSet<Tag> Tags { get; set; }
 
         public BlogSystemEFDbContext(DbContextOptions<BlogSystemEFDbContext> options, IDateTimeWrapper dateTimeProvider)
@@ -31,12 +32,19 @@ namespace BS.Data.EFContext
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<IdentityRole>().HasData(this.SeedDefaultRoles());
+            builder.Entity<IdentityRole>().HasData(DefaultRolesDataSeed.SeedData());
+            builder.Entity<Author>().HasData(AuthorDataSeed.SeedData());
+            builder.Entity<BlogPost>().HasData(BlogPostDataSeed.SeedData());
+            builder.Entity<Tag>().HasData(TagDataSeed.SeedData());
+            builder.Entity<BlogPostTag>().HasData(BlogPostTagDataSeed.SeedData());
+
             this.ApplyModelConfigurations(builder);
             this.SeedDefaultAdmin(builder);
 
             base.OnModelCreating(builder);
         }
+
+       
 
         private void ApplyModelConfigurations(ModelBuilder builder)
         {
@@ -95,21 +103,13 @@ namespace BS.Data.EFContext
             }
         }
 
-        private IdentityRole[] SeedDefaultRoles()
-        {
-            var administrator = new IdentityRole() { Id = "1", Name = "Administrator", NormalizedName = "ADMINISTRATOR" };
-            var noRoleUser = new IdentityRole() { Id = "2", Name = "NoRoleUser", NormalizedName = "NoRoleUser" };
-
-            
-
-            return new IdentityRole[] { administrator, noRoleUser };
-        }
+        
 
         private void SeedDefaultAdmin(ModelBuilder builder)
         {
             var adminUser = new BaseIdentityUser
             {
-                Id = Guid.NewGuid().ToString(),
+                Id = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
                 UserName = "Admin1",
                 NormalizedUserName = "admin1@mail.com".ToUpper(),
                 Email = "admin1@mail.com",

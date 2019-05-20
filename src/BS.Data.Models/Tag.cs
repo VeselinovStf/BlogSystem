@@ -8,6 +8,12 @@ namespace BS.Data.Models
 {
     public class Tag : ITagable
     {
+        public Tag()
+        {
+
+            this.BlogPostTag = new HashSet<BlogPostTag>();
+        }
+
         public int Id { get; set; }
         public string Name { get; set; }
         public bool IsDeleted { get; set; }
@@ -15,6 +21,6 @@ namespace BS.Data.Models
         public DateTime? CreatedOn { get; set; }
         public DateTime? ModifiedOn { get; set; }
 
-        public BlogPostTag BlogPostTag { get; set; }
+        public ICollection<BlogPostTag> BlogPostTag { get; set; }
     }
 }

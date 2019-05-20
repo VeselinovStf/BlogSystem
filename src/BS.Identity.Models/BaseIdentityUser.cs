@@ -5,6 +5,6 @@ namespace BS.Identity.Models
 {
     public class BaseIdentityUser : IdentityUser
     {
-       
+        
     }
 }

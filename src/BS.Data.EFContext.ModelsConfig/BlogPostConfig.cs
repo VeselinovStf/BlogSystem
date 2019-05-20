@@ -1,4 +1,5 @@
 ﻿using BS.Data.EFContext.ModelConfig.Abstract;
+using BS.Data.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -6,11 +7,11 @@ using System.Text;
 
 namespace BS.Data.EFContext.ModelsConfig
 {
-    public class BlogPostConfig : IEFModelConfig<BlogPostConfig>
+    public class BlogPostConfig : IEFModelConfig<BlogPost>
     {
-        public void Configure(EntityTypeBuilder<BlogPostConfig> builder)
+        public void Configure(EntityTypeBuilder<BlogPost> builder)
         {
-            throw new NotImplementedException();
+          
         }
     }
 }

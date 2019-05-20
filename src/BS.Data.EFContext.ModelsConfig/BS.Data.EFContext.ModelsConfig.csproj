@@ -6,6 +6,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\BS.Data.EFContext.ModelConfig.Abstract\BS.Data.EFContext.ModelConfig.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Data.Models\BS.Data.Models.csproj" />
   </ItemGroup>
 
 </Project>

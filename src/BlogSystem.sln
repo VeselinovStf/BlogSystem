@@ -89,9 +89,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{FA7B458E-4
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Config", "Config", "{31206A6C-7D88-44AD-86C3-7943E969B30F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EFContext.ModelsConfig", "BS.Data.EFContext.ModelsConfig\BS.Data.EFContext.ModelsConfig.csproj", "{0D682CBA-537F-4CC4-B906-078AFDB4AF06}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.EFContext.ModelsConfig", "BS.Data.EFContext.ModelsConfig\BS.Data.EFContext.ModelsConfig.csproj", "{0D682CBA-537F-4CC4-B906-078AFDB4AF06}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EFContext.ModelConfig.Abstract", "BS.Data.EFContext.ModelConfig.Abstract\BS.Data.EFContext.ModelConfig.Abstract.csproj", "{FB19825B-5155-4F22-888F-7DCBABFBB0EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.EFContext.ModelConfig.Abstract", "BS.Data.EFContext.ModelConfig.Abstract\BS.Data.EFContext.ModelConfig.Abstract.csproj", "{FB19825B-5155-4F22-888F-7DCBABFBB0EC}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

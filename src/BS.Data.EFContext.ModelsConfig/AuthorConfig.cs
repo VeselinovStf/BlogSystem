@@ -1,14 +1,20 @@
 ﻿using BS.Data.EFContext.ModelConfig.Abstract;
+using BS.Data.Models;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 
 namespace BS.Data.EFContext.ModelsConfig
 {
-    public class AuthorConfig : IEFModelConfig<AuthorConfig>
+    public class AuthorConfig : IEFModelConfig<Author>
     {
-        public void Configure(EntityTypeBuilder<AuthorConfig> builder)
+        public void Configure(EntityTypeBuilder<Author> builder)
         {
-            throw new NotImplementedException();
+            builder.HasMany(a => a.BlogPosts)
+                .WithOne(p => p.Author)
+                .HasForeignKey(p => p.AuthorId);
+
+            builder.HasOne(a => a.AppUser)
+                .WithOne();
         }
     }
 }

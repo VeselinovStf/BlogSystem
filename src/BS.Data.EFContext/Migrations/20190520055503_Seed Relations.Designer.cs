@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BS.Data.EFContext.Migrations
 {
     [DbContext(typeof(BlogSystemEFDbContext))]
-    [Migration("20190518144746_Initial")]
-    partial class Initial
+    [Migration("20190520055503_Seed Relations")]
+    partial class SeedRelations
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,146 @@ namespace BS.Data.EFContext.Migrations
                 .HasAnnotation("ProductVersion", "2.2.4-servicing-10062")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("BS.Data.Models.Author", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("AppUserId");
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AppUserId")
+                        .IsUnique()
+                        .HasFilter("[AppUserId] IS NOT NULL");
+
+                    b.ToTable("Authors");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AppUserId = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
+                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 981, DateTimeKind.Local).AddTicks(2474),
+                            IsDeleted = false
+                        });
+                });
+
+            modelBuilder.Entity("BS.Data.Models.BlogPost", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("AuthorId");
+
+                    b.Property<string>("Content");
+
+                    b.Property<string>("CreatedBy");
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<string>("LastEditedBy");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Title");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AuthorId");
+
+                    b.ToTable("BlogPosts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            AuthorId = 1,
+                            Content = "This is a simple post content.",
+                            CreatedBy = "Admin 1",
+                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 989, DateTimeKind.Local).AddTicks(6567),
+                            IsDeleted = false,
+                            LastEditedBy = "Admin 1",
+                            Title = "Demo Post"
+                        });
+                });
+
+            modelBuilder.Entity("BS.Data.Models.BlogPostTag", b =>
+                {
+                    b.Property<int>("BlogPostId");
+
+                    b.Property<int>("TagId");
+
+                    b.HasKey("BlogPostId", "TagId");
+
+                    b.HasIndex("TagId");
+
+                    b.ToTable("BlogPostTags");
+
+                    b.HasData(
+                        new
+                        {
+                            BlogPostId = 1,
+                            TagId = 1
+                        },
+                        new
+                        {
+                            BlogPostId = 1,
+                            TagId = 2
+                        });
+                });
+
+            modelBuilder.Entity("BS.Data.Models.Tag", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("CreatedOn");
+
+                    b.Property<DateTime?>("DeletedOn");
+
+                    b.Property<bool>("IsDeleted");
+
+                    b.Property<DateTime?>("ModifiedOn");
+
+                    b.Property<string>("Name");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Tags");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 991, DateTimeKind.Local).AddTicks(3367),
+                            IsDeleted = false,
+                            Name = "First Tag"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CreatedOn = new DateTime(2019, 5, 20, 8, 54, 59, 992, DateTimeKind.Local).AddTicks(8644),
+                            IsDeleted = false,
+                            Name = "Second Tag"
+                        });
+                });
 
             modelBuilder.Entity("BS.Identity.Models.BaseIdentityUser", b =>
                 {
@@ -74,18 +214,18 @@ namespace BS.Data.EFContext.Migrations
                     b.HasData(
                         new
                         {
-                            Id = "2290c385-8ce2-452c-9e20-db7989a9ea46",
+                            Id = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "2ffc1420-680b-4854-8ef9-e4046bd18072",
+                            ConcurrencyStamp = "45bd6513-d020-4aac-9465-127f8a9aaf18",
                             Email = "admin1@mail.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN1@MAIL.COM",
                             NormalizedUserName = "ADMIN1@MAIL.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEGgxQ3hpHXlwYfm7xGLXY/MzA5ucYqqmRNIVPGzrZY07xaFrzyzOUN5yS/eETvYWxA==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDd7yDevgK2VjCB3wnAeqlAa0wjbXudPIZrNl1a8ZpqNVJ3ffjlGzgrF+DEDQwPH7A==",
                             PhoneNumber = "+359359",
                             PhoneNumberConfirmed = true,
-                            SecurityStamp = "4dfb4339-ba4c-44a6-996c-4e777a6b0e6b",
+                            SecurityStamp = "c06fe3d6-1c0b-4126-836f-a3b768869b7c",
                             TwoFactorEnabled = false,
                             UserName = "Admin1"
                         });
@@ -118,14 +258,14 @@ namespace BS.Data.EFContext.Migrations
                         new
                         {
                             Id = "1",
-                            ConcurrencyStamp = "efeb20b6-42bf-4437-be89-4f2b51aa2d60",
+                            ConcurrencyStamp = "68b4d47d-f571-49d0-8e0a-1975ed307560",
                             Name = "Administrator",
                             NormalizedName = "ADMINISTRATOR"
                         },
                         new
                         {
                             Id = "2",
-                            ConcurrencyStamp = "7418dbdb-3892-4ff8-ad37-dea52a3f102b",
+                            ConcurrencyStamp = "4e11f7a5-a0fc-4e5c-8f88-e8ec28e3fc48",
                             Name = "NoRoleUser",
                             NormalizedName = "NoRoleUser"
                         });
@@ -204,7 +344,7 @@ namespace BS.Data.EFContext.Migrations
                     b.HasData(
                         new
                         {
-                            UserId = "2290c385-8ce2-452c-9e20-db7989a9ea46",
+                            UserId = "33e30ac8-a39b-4979-90a9-9d999e514bd0",
                             RoleId = "1"
                         });
                 });
@@ -222,6 +362,34 @@ namespace BS.Data.EFContext.Migrations
                     b.HasKey("UserId", "LoginProvider", "Name");
 
                     b.ToTable("AspNetUserTokens");
+                });
+
+            modelBuilder.Entity("BS.Data.Models.Author", b =>
+                {
+                    b.HasOne("BS.Identity.Models.BaseIdentityUser", "AppUser")
+                        .WithOne()
+                        .HasForeignKey("BS.Data.Models.Author", "AppUserId");
+                });
+
+            modelBuilder.Entity("BS.Data.Models.BlogPost", b =>
+                {
+                    b.HasOne("BS.Data.Models.Author", "Author")
+                        .WithMany("BlogPosts")
+                        .HasForeignKey("AuthorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("BS.Data.Models.BlogPostTag", b =>
+                {
+                    b.HasOne("BS.Data.Models.BlogPost", "BlogPost")
+                        .WithMany("BlogPostTag")
+                        .HasForeignKey("BlogPostId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("BS.Data.Models.Tag", "Tag")
+                        .WithMany("BlogPostTag")
+                        .HasForeignKey("TagId")
+                        .OnDelete(DeleteBehavior.Cascade);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>

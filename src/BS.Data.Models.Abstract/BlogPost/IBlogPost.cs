@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BS.Data.Models.Abstract.BlogPost
 {
-   public interface IBlogPost : IEntityBase, ITagableList
+   public interface IBlogPost : IEntityBase
     {
         string Title { get; set; }
 
@@ -16,6 +16,6 @@ namespace BS.Data.Models.Abstract.BlogPost
 
         string Content { get; set; }
 
-        ICollection<ITagable> KeywordsList { get; set; }
+       
     }
 }
