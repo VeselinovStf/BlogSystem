@@ -27,6 +27,7 @@ namespace BS.Data.BlogPostsRepository
                     .Include(p => p.Author.AppUser)
                     .Include(p => p.BlogPostTag)
                     .ThenInclude(c => c.Tag)
+                    .Where(p => !p.IsDeleted)
                     .ToListAsync();
         }
 
@@ -36,12 +37,20 @@ namespace BS.Data.BlogPostsRepository
                .Include(p => p.Author.AppUser)
                     .Include(p => p.BlogPostTag)
                     .ThenInclude(c => c.Tag)
+                    .Where(p => !p.IsDeleted)
                .FirstOrDefaultAsync(m => m.Id == id);
         }
 
         public async Task Update(BlogPost updateObj)
         {
             this.DbContext.BlogPosts.Update(updateObj);
+
+            await this.DbContext.SaveChangesAsync();
+        }
+
+        public async Task Add(BlogPost model)
+        {
+            await this.DbContext.BlogPosts.AddAsync(model);
 
             await this.DbContext.SaveChangesAsync();
         }

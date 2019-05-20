@@ -64,6 +64,17 @@
                     <dd class="col-sm-7">
                         @Html.DisplayFor(model => model.Author)
                     </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.BlogPostTags)
+                    </dt>
+                    <dd class="col-sm-7">
+
+                        @foreach (var item in Model.BlogPostTags)
+                        {
+                            <p class="card d-inline-block">@item.Name</p>
+                        }
+
+                    </dd>
                 </dl>
             </div>
             <div>

@@ -27,6 +27,7 @@ namespace BS.Web.Controllers
         private readonly IModelFactory<BlogPostDetailsViewModel, BlogPostDTO> blogPostModelFactory;
         private readonly IModelFactory<BlogPostEditViewModel, BlogPostDTO> editBlogPostModelFactory;
         private readonly IUserManagerWrapper<BaseIdentityUser> userManager;
+        private readonly IModelFactory<BlogPostDeleteViewModel, BlogPostDTO> deleteBlogPosetModelFactory;
         private readonly ILocalRedirector localRedirector;
         private readonly ILogger<BlogPostController> logger;
 
@@ -34,6 +35,7 @@ namespace BS.Web.Controllers
             IModelFactory<BlogPostDetailsViewModel, BlogPostDTO> blogPostModelFactory,
             IModelFactory<BlogPostEditViewModel, BlogPostDTO> editBlogPostModelFactory,
             IUserManagerWrapper<BaseIdentityUser> userManager,
+            IModelFactory<BlogPostDeleteViewModel, BlogPostDTO> deleteBlogPosetModelFactory,
             ILocalRedirector localRedirector,
             ILogger<BlogPostController> logger)
         {
@@ -41,6 +43,7 @@ namespace BS.Web.Controllers
             this.blogPostModelFactory = blogPostModelFactory;
             this.editBlogPostModelFactory = editBlogPostModelFactory;
             this.userManager = userManager;
+            this.deleteBlogPosetModelFactory = deleteBlogPosetModelFactory;
             this.localRedirector = localRedirector;
             this.logger = logger;
         }
@@ -84,29 +87,58 @@ namespace BS.Web.Controllers
             
         }
 
-        // GET: BlogPost/Create
-        //public IActionResult Create()
-        //{
-        //    ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Id");
-        //    return View();
-        //}
+       // GET: BlogPost/Create
+        public IActionResult Create()
+        {
+            var model = new BlogPostCreateViewModel();
 
-        //// POST: BlogPost/Create
-        //// To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        //// more details see http://go.microsoft.com/fwlink/?LinkId=317598.
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> Create([Bind("Id,Title,CreatedBy,LastEditedBy,Content,IsDeleted,DeletedOn,CreatedOn,ModifiedOn,AuthorId")] BlogPost blogPost)
-        //{
-        //    if (ModelState.IsValid)
-        //    {
-        //        _context.Add(blogPost);
-        //        await _context.SaveChangesAsync();
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    ViewData["AuthorId"] = new SelectList(_context.Authors, "Id", "Id", blogPost.AuthorId);
-        //    return View(blogPost);
-        //}
+            model.BackgroundImage = "";
+            model.HeaderTitle = "Create Post";
+            model.PageTitle = "Create Post";
+
+            return View(model);
+        }
+
+        // POST: BlogPost/Create
+      
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> Create([Bind("Title,Content")] BlogPostCreateViewModel blogPost)
+        {
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    //TODO : SET THIS TO SERVICE
+                    var user = await this.userManager.GetUserAsync(HttpContext.User);
+
+                    await this.blogPostService.Create( blogPost.Title, blogPost.Content, user.UserName, user.);
+
+                    return RedirectToLocal("Index", "Home");
+                }
+                catch (EntityIsNullException ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+                catch (Exception ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+            }
+
+            return View(blogPost);
+           
+        }
 
         // GET: BlogPost/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -118,8 +150,8 @@ namespace BS.Web.Controllers
                 var blogPost = this.editBlogPostModelFactory.Create(serviceCall);
 
                 blogPost.BackgroundImage = "";
-                blogPost.HeaderTitle = "Edit Post";
-                blogPost.PageTitle = "Edit Post";
+                blogPost.HeaderTitle = "Delete Post";
+                blogPost.PageTitle = "Delete Post";
 
                 return View(blogPost);
             }
@@ -144,12 +176,10 @@ namespace BS.Web.Controllers
           
         }
 
-        // POST: BlogPost/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
+        // POST: BlogPost/Edit/5      
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content")] BlogPost blogPost)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Title,Content")] BlogPostEditViewModel blogPost)
         {
             if (ModelState.IsValid)
             {
@@ -185,40 +215,60 @@ namespace BS.Web.Controllers
           
         }
 
-        //// GET: BlogPost/Delete/5
-        //public async Task<IActionResult> Delete(int? id)
-        //{
-        //    if (id == null)
-        //    {
-        //        return NotFound();
-        //    }
+        // GET: BlogPost/Delete/5
+        public async Task<IActionResult> Delete(int? id)
+        {
+            try
+            {
+                var serviceCall = await this.blogPostService.Get(id);
 
-        //    var blogPost = await _context.BlogPosts
-        //        .Include(b => b.Author)
-        //        .FirstOrDefaultAsync(m => m.Id == id);
-        //    if (blogPost == null)
-        //    {
-        //        return NotFound();
-        //    }
+                var blogPost = this.deleteBlogPosetModelFactory.Create(serviceCall);
 
-        //    return View(blogPost);
-        //}
+                blogPost.BackgroundImage = "";
+                blogPost.HeaderTitle = "Delete Post";
+                blogPost.PageTitle = "Delete Post";
 
-        //// POST: BlogPost/Delete/5
-        //[HttpPost, ActionName("Delete")]
-        //[ValidateAntiForgeryToken]
-        //public async Task<IActionResult> DeleteConfirmed(int id)
-        //{
-        //    var blogPost = await _context.BlogPosts.FindAsync(id);
-        //    _context.BlogPosts.Remove(blogPost);
-        //    await _context.SaveChangesAsync();
-        //    return RedirectToAction(nameof(Index));
-        //}
+                return View(blogPost);
+            }
+            catch (IdIsNullException ex)
+            {
+                this.logger.LogError(ex.Message);
 
-        //private bool BlogPostExists(int id)
-        //{
-        //    return _context.BlogPosts.Any(e => e.Id == id);
-        //}
+                return NotFound();
+            }
+            catch (EntityIsNullException ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
+
+        }
+
+        // POST: BlogPost/Delete/5
+        [HttpPost, ActionName("Delete")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> DeleteConfirmed(int id)
+        {
+            try
+            {
+                await this.blogPostService.Remove(id);
+
+                return RedirectToLocal("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
+        }
 
         private IActionResult RedirectToLocal(string returnUrl, string controller = "Home", string action = "Index", string area = "")
         {

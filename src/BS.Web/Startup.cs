@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using BS.Data.Author.Repository;
 using BS.Data.BlogPostsRepository;
 using BS.Data.EFContext;
 using BS.Data.EntityRepository.Abstract;
@@ -83,6 +84,7 @@ namespace BS.Web
             }
 
             services.AddScoped<IEntityRepository<BlogPost>, BlogPostRepository>();
+            services.AddScoped<IEntityStringIdGet<Author>, AuthorRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -111,6 +113,7 @@ namespace BS.Web
             services.AddScoped<IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>>, BlogPostSetModelFactory>();
             services.AddScoped<IModelFactory<BlogPostDetailsViewModel, BlogPostDTO>, WEB.BlogPostModelFactory.BlogPostModelFactory>();
             services.AddScoped<IModelFactory<BlogPostEditViewModel, BlogPostDTO>, EditBlogPostModelFactory>();
+            services.AddScoped<IModelFactory<BlogPostDeleteViewModel, BlogPostDTO>, DeleteBlogPostModelFactory>();
 
 
         }

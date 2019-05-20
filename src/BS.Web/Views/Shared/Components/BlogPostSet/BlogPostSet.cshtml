@@ -31,20 +31,22 @@
             <p class="lead">@item.Content</p>
             <hr>
             <p>
-                @foreach (var tag in item.BlogPostTags)
-                {
-                    <spam><small>/ @tag.Name /</small></spam>
-
-                }
-            </p>
-            @if (!Model.IsPublic)
-            {
               
-                 <a class="btn btn-dark" asp-action="Edit" asp-controller="BlogPost" asp-route-id="@item.Id">Edit</a>
-                <a class="btn btn-dark" asp-action="Details" asp-controller="BlogPost" asp-route-id="@item.Id">Details</a>
-                <a class="btn btn-dark" asp-action="Delete" asp-controller="BlogPost" asp-route-id="@item.Id">Delete</a>
+
+                    @foreach (var tag in item.BlogPostTags)
+                    {
+                <p class="card d-inline-block">@tag.Name</p>
             }
-        </div>
+
+                    </p>
+                    @if (!Model.IsPublic)
+                    {
+
+                        <a class="btn btn-dark" asp-action="Edit" asp-controller="BlogPost" asp-route-id="@item.Id">Edit</a>
+                        <a class="btn btn-dark" asp-action="Details" asp-controller="BlogPost" asp-route-id="@item.Id">Details</a>
+                        <a class="btn btn-dark" asp-action="Delete" asp-controller="BlogPost" asp-route-id="@item.Id">Delete</a>
+                    }
+                </div>
         }
         </div>
 </div>

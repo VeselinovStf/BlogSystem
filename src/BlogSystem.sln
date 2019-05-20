@@ -127,6 +127,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.ServiceValidato
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.ServiceValidator.Exceptions", "BS.Services.ServiceValidator.Exceptions\BS.Services.ServiceValidator.Exceptions.csproj", "{4BFD4687-341F-409B-86B6-460BE32B6DA7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.Author.Repository", "BS.Data.Author.Repository\BS.Data.Author.Repository.csproj", "{59E62E28-308F-4FBC-95E3-30E7214B83A3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -257,6 +259,10 @@ Global
 		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59E62E28-308F-4FBC-95E3-30E7214B83A3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59E62E28-308F-4FBC-95E3-30E7214B83A3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59E62E28-308F-4FBC-95E3-30E7214B83A3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59E62E28-308F-4FBC-95E3-30E7214B83A3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -319,6 +325,7 @@ Global
 		{040BACA7-A9A8-47B1-B1E7-2E66AF1E115F} = {91929894-276F-4CCD-9D05-86BCE833E278}
 		{59CFEF98-F3AD-4CBF-AB84-976C339A326E} = {040BACA7-A9A8-47B1-B1E7-2E66AF1E115F}
 		{4BFD4687-341F-409B-86B6-460BE32B6DA7} = {040BACA7-A9A8-47B1-B1E7-2E66AF1E115F}
+		{59E62E28-308F-4FBC-95E3-30E7214B83A3} = {BCD51DDF-A106-44C6-91D3-93130A7F05D5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6E7ECC-E7D3-429D-940B-075E25E41A0F}

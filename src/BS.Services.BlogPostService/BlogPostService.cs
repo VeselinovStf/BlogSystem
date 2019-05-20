@@ -4,6 +4,7 @@ using BS.Services.BlogPostService.Abstract;
 using BS.Services.BlogPostService.ModelDTO;
 using BS.Services.ModelFactory.Abstract;
 using BS.Services.ServiceValidator;
+using DateTimeWrapper.Abstract;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -14,16 +15,63 @@ namespace BS.Services.BlogPostService
     public class BlogPostService : IBlogPostService
     {
         private readonly IEntityRepository<BlogPost> blogPostRepo;
+        private readonly IEntityStringIdGet<Author> authorRepo;
         private readonly IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>> blogSetModelFactory;
         private readonly IServiceModelFactory<BlogPostDTO, BlogPost> blogModelFactory;
+        private readonly IDateTimeWrapper dateTimeProvider;
 
         public BlogPostService(IEntityRepository<BlogPost> blogPostRepo,
+             IEntityStringIdGet<Author> authorRepo,
             IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>> blogSetModelFactory,
-            IServiceModelFactory<BlogPostDTO, BlogPost> blogModelFactory)
+            IServiceModelFactory<BlogPostDTO, BlogPost> blogModelFactory,
+            IDateTimeWrapper dateTimeProvider)
         {
             this.blogPostRepo = blogPostRepo;
+            this.authorRepo = authorRepo;
             this.blogSetModelFactory = blogSetModelFactory;
             this.blogModelFactory = blogModelFactory;
+            this.dateTimeProvider = dateTimeProvider;
+        }
+
+        public async Task Create(string title, string content, string userName, string authorId)
+        {
+            ServiceValidator.ServiceValidator.IsStringValid(title, "Title can't be null or white space.");
+            ServiceValidator.ServiceValidator.IsStringValid(content, "Content can't be null or white space.");
+            ServiceValidator.ServiceValidator.IsStringValid(userName, "Editor name can't be null or white space.");
+            ServiceValidator.ServiceValidator.IsStringValid(authorId, "Editor name can't be null or white space.");
+
+
+            var author = await this.authorRepo.Get(authorId);
+
+            ServiceValidator.ServiceValidator.IsNull(author, "Object get fails.");
+
+            var newBlogPost = new BlogPost()
+            {
+                AuthorId = author.Id,
+                CreatedBy = userName,
+                Content = content,
+                Title = title,
+                CreatedOn = this.dateTimeProvider.Now(),
+                LastEditedBy = userName,
+                ModifiedOn = this.dateTimeProvider.Now(),
+            };
+
+            ServiceValidator.ServiceValidator.IsNull(newBlogPost, "Object creation fails.");
+
+            try
+            {
+                await this.blogPostRepo.Add(newBlogPost);
+            }
+            catch(DbUpdateException ex)
+            {
+                throw new DbUpdateException($"Db Update Exception : {ex.Message} : {ex.InnerException.Message}", ex.InnerException);
+            }
+            catch (Exception ex)
+            {
+
+                throw new InvalidOperationException("Can't Create blog post.");
+            }
+
         }
 
         public async Task Edit(int id, int blogId, string title, string content, string userName)
@@ -33,7 +81,7 @@ namespace BS.Services.BlogPostService
             ServiceValidator.ServiceValidator.AreEqual(id, blogId, "Id and Blog Id are not the same.");
             ServiceValidator.ServiceValidator.IsStringValid(title, "Title can't be null or white space.");
             ServiceValidator.ServiceValidator.IsStringValid(content, "Content can't be null or white space.");
-            ServiceValidator.ServiceValidator.IsStringValid(content, "Editor name can't be null or white space.");
+            ServiceValidator.ServiceValidator.IsStringValid(userName, "Editor name can't be null or white space.");
 
             try
             {
@@ -75,6 +123,15 @@ namespace BS.Services.BlogPostService
             return serviceModel;
         }
 
-       
+        public async Task Remove(int id)
+        {
+            ServiceValidator.ServiceValidator.IsNull(id, "Id can't be null.");
+
+            var repoCall = await this.blogPostRepo.Get(id);
+
+            repoCall.IsDeleted = true;
+
+            await this.blogPostRepo.Update(repoCall);
+        }
     }
 }

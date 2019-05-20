@@ -12,5 +12,7 @@ namespace BS.Services.BlogPostService.Abstract
 
         Task<BlogPostDTO> Get(int? id);
         Task Edit(int id, int blogId, string title, string content, string userName);
+        Task Remove(int id);
+        Task Create(string title, string content, string userName, string authorId);
     }
 }

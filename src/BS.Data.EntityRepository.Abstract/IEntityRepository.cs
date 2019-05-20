@@ -4,10 +4,10 @@ using System.Threading.Tasks;
 
 namespace BS.Data.EntityRepository.Abstract
 {
-    public interface IEntityRepository<T>
+    public interface IEntityRepository<T> : IEntityIntGetId<T>
     {       
         Task<IEnumerable<T>> GetAll();
-        Task<T> Get(int? id);
         Task Update(T updateObj);
+        Task Add(T model);
     }
 }
