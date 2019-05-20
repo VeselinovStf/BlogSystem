@@ -1,0 +1,76 @@
+﻿@model BlogPostDetailsViewModel
+@await Component.InvokeAsync("PageHeader",
+    new
+    {
+        model = new PageHeaderViewModel()
+        {
+            BackgroundImage = Model.BackgroundImage,
+            HeaderTitle = Model.HeaderTitle,
+            PageTitle = Model.PageTitle
+        }
+    })
+@{
+    ViewData["Title"] = Model.PageTitle;
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<!-- Main Content -->
+<div class="container">
+    <div class="row">
+        <div class="col-lg-8 col-md-10 mx-auto">
+            <h1>Details</h1>
+            <div>               
+                <hr />
+                <dl class="row">
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Title)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Title)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.CreatedBy)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.CreatedBy)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.LastEditedBy)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.LastEditedBy)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Content)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Content)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.CreatedOn)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.CreatedOn)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.ModifiedOn)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.ModifiedOn)
+                    </dd>
+                    <dt class="col-sm-5">
+                        @Html.DisplayNameFor(model => model.Author)
+                    </dt>
+                    <dd class="col-sm-7">
+                        @Html.DisplayFor(model => model.Author)
+                    </dd>
+                </dl>
+            </div>
+            <div>
+                <a class="btn btn-dark" asp-action="Edit" asp-route-id="@Model.Id">Edit</a> 
+                <a class="btn btn-dark" asp-action="Index" asp-controller="Home">Back to List</a>
+            </div>
+        </div>
+    </div>
+</div>
+            

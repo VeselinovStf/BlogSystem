@@ -106,8 +106,11 @@ namespace BS.Web
         {
             services.AddScoped<ILocalRedirector, LocalRedirector>();
             services.AddScoped<IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>>, BlogPostListModelFactory>();
+            services.AddScoped<IServiceModelFactory<BlogPostDTO, BlogPost>, Services.BlogPostService.ModelFactory.BlogPostModelFactory>();
             services.AddScoped<IBlogPostService, BlogPostService>();
-            services.AddScoped<IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>>, BlogPostModelFactory>();
+            services.AddScoped<IModelFactory<BlogPostSetViewModel, IEnumerable<BlogPostDTO>>, BlogPostSetModelFactory>();
+            services.AddScoped<IModelFactory<BlogPostDetailsViewModel, BlogPostDTO>, WEB.BlogPostModelFactory.BlogPostModelFactory>();
+            services.AddScoped<IModelFactory<BlogPostEditViewModel, BlogPostDTO>, EditBlogPostModelFactory>();
 
 
         }

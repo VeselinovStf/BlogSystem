@@ -95,31 +95,37 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.EFContext.ModelConf
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPost", "BlogPost", "{C5041460-6E3C-4861-9EA8-5041D0DCF63A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogPostService.Abstract", "BS.Services.BlogPostService.Abstract\BS.Services.BlogPostService.Abstract.csproj", "{D88C972B-2EED-4E05-B97A-C59E286A635C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.BlogPostService.Abstract", "BS.Services.BlogPostService.Abstract\BS.Services.BlogPostService.Abstract.csproj", "{D88C972B-2EED-4E05-B97A-C59E286A635C}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Repository", "Repository", "{BCD51DDF-A106-44C6-91D3-93130A7F05D5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.EntityRepository.Abstract", "BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj", "{5AF29FF0-1F9A-49E0-A64B-34692FAF3FAC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.EntityRepository.Abstract", "BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj", "{5AF29FF0-1F9A-49E0-A64B-34692FAF3FAC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.BlogPostsRepository", "BS.Data.BlogPostsRepository\BS.Data.BlogPostsRepository.csproj", "{C3382009-8706-4017-93F9-1ECD79DDDDF0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.BlogPostsRepository", "BS.Data.BlogPostsRepository\BS.Data.BlogPostsRepository.csproj", "{C3382009-8706-4017-93F9-1ECD79DDDDF0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogPostService.ModelDTO", "BS.Services.BlogPostService.ModelDTO\BS.Services.BlogPostService.ModelDTO.csproj", "{92BBE44F-C05F-41AA-B48D-93005D1D36CF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.BlogPostService.ModelDTO", "BS.Services.BlogPostService.ModelDTO\BS.Services.BlogPostService.ModelDTO.csproj", "{92BBE44F-C05F-41AA-B48D-93005D1D36CF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogPostService", "BS.Services.BlogPostService\BS.Services.BlogPostService.csproj", "{202DA3B1-A06D-4FE9-942E-077F497E6B1A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.BlogPostService", "BS.Services.BlogPostService\BS.Services.BlogPostService.csproj", "{202DA3B1-A06D-4FE9-942E-077F497E6B1A}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModelFactory", "ModelFactory", "{D5967B21-D90D-4CCF-9725-E3CF23845B8B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.ModelFactory.Abstract", "BS.Services.ModelFactory.Abstract\BS.Services.ModelFactory.Abstract.csproj", "{857FB20D-629F-4CA1-B21F-FACA49028CE8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.ModelFactory.Abstract", "BS.Services.ModelFactory.Abstract\BS.Services.ModelFactory.Abstract.csproj", "{857FB20D-629F-4CA1-B21F-FACA49028CE8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogPostService.ModelFactory", "BS.Services.BlogPostService.ModelFactory\BS.Services.BlogPostService.ModelFactory.csproj", "{9084327D-5EE2-463B-8F85-62824E54E40F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.BlogPostService.ModelFactory", "BS.Services.BlogPostService.ModelFactory\BS.Services.BlogPostService.ModelFactory.csproj", "{9084327D-5EE2-463B-8F85-62824E54E40F}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ModelFactory", "ModelFactory", "{28FEC7E5-6DB9-4757-BF61-1941CEBB0B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.ModelFactory.Abstract", "BS.WEB.ModelFactory.Abstract\BS.WEB.ModelFactory.Abstract.csproj", "{E255DFFF-4616-45EC-A757-34B6EF523B2E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.ModelFactory.Abstract", "BS.WEB.ModelFactory.Abstract\BS.WEB.ModelFactory.Abstract.csproj", "{E255DFFF-4616-45EC-A757-34B6EF523B2E}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPost", "BlogPost", "{E899EDA4-FE80-482E-A12D-F8630933A032}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.BlogPostModelFactory", "BS.WEB.BlogPostModelFactory\BS.WEB.BlogPostModelFactory.csproj", "{D9214FBC-8AD2-49BF-9099-FB4B82D797B8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.BlogPostModelFactory", "BS.WEB.BlogPostModelFactory\BS.WEB.BlogPostModelFactory.csproj", "{D9214FBC-8AD2-49BF-9099-FB4B82D797B8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "ServiceValidator", "ServiceValidator", "{040BACA7-A9A8-47B1-B1E7-2E66AF1E115F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.ServiceValidator", "BS.Services.ServiceValidator\BS.Services.ServiceValidator.csproj", "{59CFEF98-F3AD-4CBF-AB84-976C339A326E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.ServiceValidator.Exceptions", "BS.Services.ServiceValidator.Exceptions\BS.Services.ServiceValidator.Exceptions.csproj", "{4BFD4687-341F-409B-86B6-460BE32B6DA7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -243,6 +249,14 @@ Global
 		{D9214FBC-8AD2-49BF-9099-FB4B82D797B8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9214FBC-8AD2-49BF-9099-FB4B82D797B8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9214FBC-8AD2-49BF-9099-FB4B82D797B8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{59CFEF98-F3AD-4CBF-AB84-976C339A326E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{59CFEF98-F3AD-4CBF-AB84-976C339A326E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{59CFEF98-F3AD-4CBF-AB84-976C339A326E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{59CFEF98-F3AD-4CBF-AB84-976C339A326E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4BFD4687-341F-409B-86B6-460BE32B6DA7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -302,6 +316,9 @@ Global
 		{E255DFFF-4616-45EC-A757-34B6EF523B2E} = {28FEC7E5-6DB9-4757-BF61-1941CEBB0B86}
 		{E899EDA4-FE80-482E-A12D-F8630933A032} = {28FEC7E5-6DB9-4757-BF61-1941CEBB0B86}
 		{D9214FBC-8AD2-49BF-9099-FB4B82D797B8} = {E899EDA4-FE80-482E-A12D-F8630933A032}
+		{040BACA7-A9A8-47B1-B1E7-2E66AF1E115F} = {91929894-276F-4CCD-9D05-86BCE833E278}
+		{59CFEF98-F3AD-4CBF-AB84-976C339A326E} = {040BACA7-A9A8-47B1-B1E7-2E66AF1E115F}
+		{4BFD4687-341F-409B-86B6-460BE32B6DA7} = {040BACA7-A9A8-47B1-B1E7-2E66AF1E115F}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6E7ECC-E7D3-429D-940B-075E25E41A0F}

@@ -4,7 +4,8 @@ using System.Collections.Generic;
 namespace BS.Services.BlogPostService.ModelDTO
 {
     public class BlogPostDTO
-    {     
+    {
+        public int Id { get; set; }
         public string Title { get; set; }
         public string CreatedBy { get; set; }
         public string LastEditedBy { get; set; }

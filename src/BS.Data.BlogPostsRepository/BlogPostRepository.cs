@@ -18,6 +18,8 @@ namespace BS.Data.BlogPostsRepository
 
         public BlogSystemEFDbContext DbContext { get; }
 
+      
+
         public async Task<IEnumerable<BlogPost>> GetAll()
         {
             return await this.DbContext
@@ -26,6 +28,22 @@ namespace BS.Data.BlogPostsRepository
                     .Include(p => p.BlogPostTag)
                     .ThenInclude(c => c.Tag)
                     .ToListAsync();
+        }
+
+        public async Task<BlogPost> Get(int? id)
+        {
+            return await this.DbContext.BlogPosts
+               .Include(p => p.Author.AppUser)
+                    .Include(p => p.BlogPostTag)
+                    .ThenInclude(c => c.Tag)
+               .FirstOrDefaultAsync(m => m.Id == id);
+        }
+
+        public async Task Update(BlogPost updateObj)
+        {
+            this.DbContext.BlogPosts.Update(updateObj);
+
+            await this.DbContext.SaveChangesAsync();
         }
     }
 }

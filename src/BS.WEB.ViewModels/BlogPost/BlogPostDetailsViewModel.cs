@@ -1,10 +1,11 @@
-﻿using System;
+﻿using BS.WEB.ViewModels.Abstract;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
 namespace BS.WEB.ViewModels.BlogPost
 {
-   public class BlogPostViewModel
+   public class BlogPostDetailsViewModel : IBasePageViewModel
     {
         public int Id { get; set; }
         public string Title { get; set; }
@@ -16,5 +17,9 @@ namespace BS.WEB.ViewModels.BlogPost
         public DateTime? ModifiedOn { get; set; }
         public string Author { get; set; }
         public ICollection<TagViewModel> BlogPostTags { get; set; }
+
+        public string PageTitle { get; set; }
+        public string BackgroundImage { get; set; }
+        public string HeaderTitle { get; set; }
     }
 }

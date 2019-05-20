@@ -13,6 +13,7 @@ namespace BS.Services.BlogPostService.ModelFactory
         {
             var model = inputType.Select(m => new BlogPostDTO()
             {
+                Id = m.Id,
                 Author = m.Author.AppUser.UserName,
                 BlogPostTags = m.BlogPostTag.Select(t => new TagDTO()
                 {
