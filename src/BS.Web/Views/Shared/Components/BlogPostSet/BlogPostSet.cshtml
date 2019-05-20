@@ -1,0 +1,47 @@
+﻿@model BlogPostViewComponentModel
+
+
+<!-- Page Content -->
+<div class="row">
+
+    <div class=" col-lg-8 col-md-10 mx-auto">
+        @foreach (var item in Model.Posts)
+        {
+            <!-- Post Content Column -->
+            <div class="col-lg-8">
+
+                <!-- Title -->
+                <h1 class="mt-4">@item.Title</h1>
+
+                <!-- Author -->
+                <p class="lead">
+                    by
+                    @item.CreatedBy / Last Edited by: @item.LastEditedBy
+                </p>
+
+                <hr>
+
+                <!-- Date/Time -->
+                <p>Published: @item.CreatedOn</p>
+
+                <hr>
+
+
+                <!-- Post Content -->
+                <p class="lead">@item.Content</p>
+                <hr>
+                <p>
+                    @foreach (var tag in item.BlogPostTags)
+                    {
+                    <spam><small>/ @tag.Name /</small></spam>
+
+                    }
+                </p>
+                @if (!Model.IsPublic)
+                {
+                    <a class="btn btn-dark" asp-controller="BlogPost" asp-action="Edit">Edit</a>
+                }
+            </div>
+        }
+        </div>
+</div>
