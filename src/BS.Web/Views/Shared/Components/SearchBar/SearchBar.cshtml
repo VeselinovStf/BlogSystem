@@ -1,0 +1,42 @@
+﻿<!-- Search Widget -->
+@*<div class="col-md-4 float-right">
+        <div class="card my-4">
+            <div class="card-body">
+                <div class="input-group search-form" role="search" method="get">
+                    <input type="search" class="form-control search-field" value="" placeholder="Search for..." id="test" title="Search">
+                    <span class="input-group-btn">
+                        <input class="btn btn-secondary search-submit" type="submit">Go!</input>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>*@
+    <style>
+        #search-data {
+            padding: 10px;
+            border: solid 1px #BDC7D8;
+            margin-bottom: 20px;
+            display: inline;
+            width: 100%;
+        }
+
+        .search-result {
+            border-bottom: solid 1px #BDC7D8;
+            padding: 10px;
+            font-family: Times New Roman;
+            font-size: 20px;
+            color: blue;
+        }
+    </style>
+    <div style="width: 700px;margin:40px auto;">
+        <div id="search-box-container">
+            <label>
+                Jquery search box using Ajax :
+            </label>
+            <br>
+            <br>
+            <input type="text" id="search-data" name="searchData" placeholder="Search By Post Title (word length should be greater than 3) ..." autocomplete="off" />
+        </div>
+        <div id="search-result-container" style="border:solid 1px #BDC7D8;display:none; ">
+        </div>
+    </div>
