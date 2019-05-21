@@ -1,4 +1,4 @@
-﻿namespace BS.WEB.ViewModels.BlogPost
+﻿namespace BS.WEB.ViewModels.Tag
 {
     public class TagViewModel
     {

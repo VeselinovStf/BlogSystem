@@ -7,23 +7,60 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using BS.Data.EFContext;
 using BS.Data.Models;
+using Microsoft.AspNetCore.Authorization;
+using BS.WEB.ViewModels.Tag;
+using BS.Services.TagService.Abstract;
+using Microsoft.Extensions.Logging;
+using BS.WEB.ModelFactory.Abstract;
+using BS.Services.TagService.ModelDTO;
 
 namespace BS.Web.Controllers
 {
+    [Authorize]
     public class TagsController : Controller
     {
         private readonly BlogSystemEFDbContext _context;
+        private readonly ITagService tagService;
+        private readonly IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory;
+        private readonly ILogger<TagsController> logger;
 
-        public TagsController(BlogSystemEFDbContext context)
+        public TagsController(
+            BlogSystemEFDbContext context, 
+            ITagService tagService,
+            IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory,
+            ILogger<TagsController> logger)
         {
             _context = context;
+            this.tagService = tagService;
+            this.tagSetModelFactory = tagSetModelFactory;
+            this.logger = logger;
         }
             
         // GET: Tags
         public async Task<IActionResult> Index(int id)
         {
-            
-            return View(await _context.BlogPostTags.Where(t => t.BlogPostId == id).Select(t => t.Tag).ToListAsync());
+            try
+            {
+
+                var serviceCall = await this.tagService.GetAll(id);
+
+                var model = this.tagSetModelFactory.Create(serviceCall);
+
+                model.BackgroundImage = "";
+                model.HeaderTitle = "Post Keywords";
+                model.PageTitle = "Post Keywords";
+
+                this.logger.LogInformation("Displaying all  Tags");
+
+                return View(model);
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }           
+
         }
 
         // GET: Tags/Details/5

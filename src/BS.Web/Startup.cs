@@ -7,6 +7,7 @@ using BS.Data.BlogPostsRepository;
 using BS.Data.EFContext;
 using BS.Data.EntityRepository.Abstract;
 using BS.Data.Models;
+using BS.Data.Tags.Repository;
 using BS.Identity.Manager.SignInManager.Wrapper.Abstract;
 using BS.Identity.Manager.SignInManagerUtility;
 using BS.Identity.Manager.UserManager.Wrapper.Abstract;
@@ -19,6 +20,10 @@ using BS.Services.BlogPostService.Abstract;
 using BS.Services.BlogPostService.ModelDTO;
 using BS.Services.BlogPostService.ModelFactory;
 using BS.Services.ModelFactory.Abstract;
+using BS.Services.TagService;
+using BS.Services.TagService.Abstract;
+using BS.Services.TagService.ModelDTO;
+using BS.Services.TagService.ModelFactory;
 using BS.Web.Utilities.LocalRedirector;
 using BS.Web.Utilities.LocalRedirector.Abstract;
 using BS.WEB.AccountControllerValidation;
@@ -26,6 +31,7 @@ using BS.WEB.AccountControllerValidation.Abstract;
 using BS.WEB.BlogPostModelFactory;
 using BS.WEB.ModelFactory.Abstract;
 using BS.WEB.ViewModels.BlogPost;
+using BS.WEB.ViewModels.Tag;
 using DateTimeProvider;
 using DateTimeWrapper.Abstract;
 using Microsoft.AspNetCore.Builder;
@@ -37,6 +43,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+using BS.WEB.TagModelFactory;
 
 namespace BS.Web
 {
@@ -85,6 +92,7 @@ namespace BS.Web
 
             services.AddScoped<IEntityRepository<BlogPost>, BlogPostRepository>();
             services.AddScoped<IEntityStringIdGet<Author>, AuthorRepository>();
+            services.AddScoped<IEntityIntGetId<IEnumerable<Tag>>, TagRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -107,6 +115,7 @@ namespace BS.Web
         private void ConfigureAppService(IServiceCollection services)
         {
             services.AddScoped<ILocalRedirector, LocalRedirector>();
+            // BlogPost
             services.AddScoped<IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>>, BlogPostListModelFactory>();
             services.AddScoped<IServiceModelFactory<BlogPostDTO, BlogPost>, Services.BlogPostService.ModelFactory.BlogPostModelFactory>();
             services.AddScoped<IBlogPostService, BlogPostService>();
@@ -114,7 +123,11 @@ namespace BS.Web
             services.AddScoped<IModelFactory<BlogPostDetailsViewModel, BlogPostDTO>, WEB.BlogPostModelFactory.BlogPostModelFactory>();
             services.AddScoped<IModelFactory<BlogPostEditViewModel, BlogPostDTO>, EditBlogPostModelFactory>();
             services.AddScoped<IModelFactory<BlogPostDeleteViewModel, BlogPostDTO>, DeleteBlogPostModelFactory>();
-
+            //Tag
+            services.AddScoped<IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>>, Services.TagService.ModelFactory.TagListModelFactory>();
+            services.AddScoped<ITagService, TagService>();
+            services.AddScoped<IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> , WEB.TagModelFactory.TagListModelFactory>();
+           
 
         }
 

@@ -63,6 +63,8 @@ namespace BS.Web.Controllers
                 blogPost.HeaderTitle = "Post Details";
                 blogPost.PageTitle = "Post Details";
 
+                this.logger.LogInformation("Displaying post details.");
+
                 return View(blogPost);
             }
             catch (IdIsNullException ex)
@@ -113,6 +115,8 @@ namespace BS.Web.Controllers
                     var user = await this.userManager.GetUserAsync(HttpContext.User);
 
                     await this.blogPostService.Create( blogPost.Title, blogPost.Content, user.UserName, user.Id);
+
+                    this.logger.LogInformation("New Post is created");
 
                     return RedirectToLocal("Index", "Home");
                 }
@@ -189,6 +193,8 @@ namespace BS.Web.Controllers
 
                     await this.blogPostService.Edit(id, blogPost.Id, blogPost.Title, blogPost.Content, user.UserName);
 
+                    this.logger.LogInformation("Editing Post.");
+
                     return RedirectToLocal("Index", "Home");
                 }
                 catch(EntityIsNullException ex)
@@ -228,6 +234,8 @@ namespace BS.Web.Controllers
                 blogPost.HeaderTitle = "Delete Post";
                 blogPost.PageTitle = "Delete Post";
 
+                this.logger.LogInformation("Deleting Post.");
+
                 return View(blogPost);
             }
             catch (IdIsNullException ex)
@@ -259,6 +267,8 @@ namespace BS.Web.Controllers
             try
             {
                 await this.blogPostService.Remove(id);
+
+                this.logger.LogInformation("Post Delete Confirmed");
 
                 return RedirectToLocal("Index", "Home");
             }

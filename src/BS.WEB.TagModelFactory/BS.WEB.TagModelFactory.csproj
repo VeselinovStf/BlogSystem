@@ -1,0 +1,13 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BS.Services.TagService.ModelDTO\BS.Services.TagService.ModelDTO.csproj" />
+    <ProjectReference Include="..\BS.WEB.ModelFactory.Abstract\BS.WEB.ModelFactory.Abstract.csproj" />
+    <ProjectReference Include="..\BS.WEB.ViewModels\BS.WEB.ViewModels.csproj" />
+  </ItemGroup>
+
+</Project>

@@ -1,6 +1,7 @@
 ﻿using BS.Services.BlogPostService.ModelDTO;
 using BS.WEB.ModelFactory.Abstract;
 using BS.WEB.ViewModels.BlogPost;
+using BS.WEB.ViewModels.Tag;
 using System;
 using System.Collections.Generic;
 using System.Linq;
