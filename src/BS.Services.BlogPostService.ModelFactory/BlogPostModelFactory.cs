@@ -17,7 +17,7 @@ namespace BS.Services.BlogPostService.ModelFactory
 
                 Id = inputType.Id,
                 Author = inputType.Author.AppUser.UserName,
-                BlogPostTags = inputType.BlogPostTag.Select(t => new TagDTO()
+                BlogPostTags = inputType.BlogPostTag.Where(t => !t.Tag.IsDeleted).Select(t => new TagDTO()
                 {
                     Name = t.Tag.Name
                 }).ToList(),

@@ -25,7 +25,7 @@ namespace BS.Data.Tags.Repository
         public async Task<Tag> Get(int? id)
         {
             return await this.DbContext.Tags
-                .FirstOrDefaultAsync(t => t.Id == id);
+                .FirstOrDefaultAsync(t => t.Id == id && !t.IsDeleted);
         }
 
         public Task<IEnumerable<Tag>> GetAll()

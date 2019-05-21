@@ -44,6 +44,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BS.WEB.TagModelFactory;
+using BS.Data.BlogPostTag.Repository;
 
 namespace BS.Web
 {
@@ -90,10 +91,12 @@ namespace BS.Web
                    Configuration.GetConnectionString("ProductionConnectionString")));
             }
 
-            services.AddScoped<IEntityRepository<BlogPost>, BlogPostRepository>();
+            services.AddScoped<IBlogPostRepository, BlogPostRepository>();
             services.AddScoped<IEntityStringIdGet<Author>, AuthorRepository>();
             services.AddScoped<IEntityIntGetId<IEnumerable<Tag>>, TagIdGetRepository>();
             services.AddScoped<IEntityRepository<Tag>, TagRepository>();
+            services.AddScoped<IEntityAddReturnRepository<Tag>, TagAddReturnRepository>();
+            services.AddScoped<IEntityAddRepository<BlogPostTag>, BlogPostTagRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -125,12 +128,13 @@ namespace BS.Web
             services.AddScoped<IModelFactory<BlogPostEditViewModel, BlogPostDTO>, EditBlogPostModelFactory>();
             services.AddScoped<IModelFactory<BlogPostDeleteViewModel, BlogPostDTO>, DeleteBlogPostModelFactory>();
             //Tag
-            services.AddScoped<IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>>, Services.TagService.ModelFactory.TagListModelFactory>();
+            services.AddScoped<IServiceModelFactory<TagSetDTO, IEnumerable<Tag>>, Services.TagService.ModelFactory.TagListModelFactory>();
             services.AddScoped<ITagService, TagService>();
-            services.AddScoped<IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> , WEB.TagModelFactory.TagListModelFactory>();
+            services.AddScoped<IModelFactory<TagSetViewModel, TagSetDTO> , WEB.TagModelFactory.TagListModelFactory>();
             services.AddScoped<IModelFactory<TagPageViewModel, TagDetailsDTO>, WEB.TagModelFactory.TagModelFactory>();
             services.AddScoped<IServiceModelFactory<TagDetailsDTO, Tag>, Services.TagService.ModelFactory.TagModelFactory>();
             services.AddScoped<IModelFactory<TagEditViewModel, TagDetailsDTO>, TagEditModelFactory>();
+            services.AddScoped<IModelFactory<TagDeleteViewModel, TagDetailsDTO>, TagDeleteModelFactory>();
 
 
 

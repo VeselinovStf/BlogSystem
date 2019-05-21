@@ -5,6 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\BS.Data.EFContext\BS.Data.EFContext.csproj" />
+    <ProjectReference Include="..\BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj" />
     <ProjectReference Include="..\BS.Data.Models\BS.Data.Models.csproj" />
   </ItemGroup>
 

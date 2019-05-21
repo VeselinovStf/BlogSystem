@@ -7,17 +7,20 @@ using System.Linq;
 
 namespace BS.Services.TagService.ModelFactory
 {
-    public class TagListModelFactory :  IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>>
+    public class TagListModelFactory :  IServiceModelFactory<TagSetDTO, IEnumerable<Tag>>
     {
-        public IEnumerable<TagDetailsDTO> Create(IEnumerable<Tag> inputType)
+        public TagSetDTO Create(IEnumerable<Tag> inputType)
         {
-            var model = inputType.Select(t => new TagDetailsDTO()
+            var model = new TagSetDTO()
             {
-                Id = t.Id,
-                CreatedOn = t.CreatedOn,
-                ModifiedOn = t.ModifiedOn,
-                Name = t.Name
-            });
+                Tags = inputType.Select(t => new TagDetailsDTO()
+                {
+                    Id = t.Id,
+                    CreatedOn = t.CreatedOn,
+                    ModifiedOn = t.ModifiedOn,
+                    Name = t.Name
+                }),                
+            };         
 
             return model;
         }

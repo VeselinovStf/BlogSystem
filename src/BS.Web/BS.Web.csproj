@@ -26,6 +26,7 @@
   <ItemGroup>
     <ProjectReference Include="..\BS.Data.Author.Repository\BS.Data.Author.Repository.csproj" />
     <ProjectReference Include="..\BS.Data.BlogPostsRepository\BS.Data.BlogPostsRepository.csproj" />
+    <ProjectReference Include="..\BS.Data.BlogPostTag.Repository\BS.Data.BlogPostTag.Repository.csproj" />
     <ProjectReference Include="..\BS.Data.EFContext\BS.Data.EFContext.csproj" />
     <ProjectReference Include="..\BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj" />
     <ProjectReference Include="..\BS.Data.Tags.Repository\BS.Data.Tags.Repository.csproj" />

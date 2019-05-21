@@ -7,19 +7,21 @@ using System.Linq;
 
 namespace BS.WEB.TagModelFactory
 {
-    public class TagListModelFactory : IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>>
+    public class TagListModelFactory : IModelFactory<TagSetViewModel, TagSetDTO>
     {
-        public TagSetViewModel Create(IEnumerable<TagDetailsDTO> inputType)
+        public TagSetViewModel Create(TagSetDTO inputType)
         {
             return new TagSetViewModel()
             {
-                Tags = inputType.Select(t => new TagDetailsViewModel()
+                Tags = inputType.Tags.Select(t => new TagDetailsViewModel()
                 {
                     Id = t.Id,
                     Name = t.Name,
                     CreatedOn = t.CreatedOn,
                     ModifiedOn = t.ModifiedOn
-                })
+                    
+                }),
+                 BlogPostId = inputType.BlogPostId
             };
         }
     }

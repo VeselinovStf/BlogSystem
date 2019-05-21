@@ -17,26 +17,74 @@ namespace BS.Services.TagService
     {
         private readonly IEntityIntGetId<IEnumerable<Tag>> tagIdRepository;
         private readonly IEntityRepository<Tag> tagRepository;
+        private readonly IEntityAddRepository<BlogPostTag> blogPostTagRepository;
+        private readonly IEntityAddReturnRepository<Tag> tagAddReturnRepository;
         private readonly IServiceModelFactory<TagDetailsDTO, Tag> tagModelFactory;
-        private readonly IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>> tagListModelFactory;
+        private readonly IServiceModelFactory<TagSetDTO, IEnumerable<Tag>> tagListModelFactory;
         private readonly IDateTimeWrapper dateTimeProvider;
 
-        public TagService(IEntityIntGetId<IEnumerable<Tag>> tagIdRepository,
+        public TagService(
+            IEntityIntGetId<IEnumerable<Tag>> tagIdRepository,
             IEntityRepository<Tag> tagRepository,
+            IEntityAddRepository<BS.Data.Models.BlogPostTag> blogPostTagRepository,
+            IEntityAddReturnRepository<Tag> tagAddReturnRepository,
             IServiceModelFactory<TagDetailsDTO, Tag> tagModelFactory,
-             IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>> tagListModelFactory,
+             IServiceModelFactory<TagSetDTO, IEnumerable<Tag>> tagListModelFactory,
              IDateTimeWrapper dateTimeProvider)
         {
             this.tagIdRepository = tagIdRepository;
             this.tagRepository = tagRepository;
+            this.blogPostTagRepository = blogPostTagRepository;
+            this.tagAddReturnRepository = tagAddReturnRepository;
             this.tagModelFactory = tagModelFactory;
             this.tagListModelFactory = tagListModelFactory;
             this.dateTimeProvider = dateTimeProvider;
         }
 
-        public async Task Create(int id, string name, string userName, string authorId)
+        public async Task Create(int id, string name, int blogId)
         {
-         
+            ServiceValidator.ServiceValidator.IsLessThanOne(id, "Id can't be less then 1.");
+            
+            ServiceValidator.ServiceValidator.IsStringValid(name, "Tag name can't be null or white space.");
+           
+
+            var newTag = new Tag()
+            {
+                Name = name,
+                CreatedOn = this.dateTimeProvider.Now(),
+                ModifiedOn = this.dateTimeProvider.Now()
+            };
+
+            ServiceValidator.ServiceValidator.IsNull(newTag, "Object creation fails.");
+
+            try
+            {
+                var createdTag = await this.tagAddReturnRepository.Add(newTag);
+
+                ServiceValidator.ServiceValidator.IsNull(createdTag, "Tag Object creation fails.");
+                ServiceValidator.ServiceValidator.IsLessThanOne(createdTag.Id, "Id can't be less then 1.");
+
+                var blogPostTag = new BlogPostTag()
+                {
+                    BlogPostId = id,
+                    TagId = createdTag.Id
+                };
+
+                ServiceValidator.ServiceValidator.IsNull(blogPostTag, "Object creation fails.");
+
+                await this.blogPostTagRepository.Add(blogPostTag);
+
+            }
+            catch (DbUpdateException ex)
+            {
+                throw new DbUpdateException($"Db Update Exception : {ex.Message} : {ex.InnerException.Message}", ex.InnerException);
+            }
+            catch (Exception ex)
+            {
+
+                throw new InvalidOperationException("Can't Create Tag.");
+            }
+
         }
 
         public async Task Edit(int id, int tagId, string name, string userName)
@@ -78,7 +126,7 @@ namespace BS.Services.TagService
             return serviceModel;
         }
 
-        public async Task<IEnumerable<TagDetailsDTO>> GetAll(int id)
+        public async Task<TagSetDTO> GetAll(int id)
         {
             ServiceValidator.ServiceValidator.IsLessThanOne(id, "Id can't be less then 1.");
 
@@ -91,8 +139,21 @@ namespace BS.Services.TagService
 
             ServiceValidator.ServiceValidator.IsNull(serviceModel, "Model is null");
 
+            serviceModel.BlogPostId = id;
+
             return serviceModel;
            
+        }
+
+        public async Task Remove(int id)
+        {
+            ServiceValidator.ServiceValidator.IsNull(id, "Id can't be null.");
+
+            var repoCall = await this.tagRepository.Get(id);
+
+            repoCall.IsDeleted = true;
+
+            await this.tagRepository.Update(repoCall);
         }
     }
 }

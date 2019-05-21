@@ -15,13 +15,13 @@ namespace BS.Services.BlogPostService
 {
     public class BlogPostService : IBlogPostService
     {
-        private readonly IEntityRepository<BlogPost> blogPostRepo;
+        private readonly IBlogPostRepository blogPostRepo;
         private readonly IEntityStringIdGet<Author> authorRepo;
         private readonly IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>> blogSetModelFactory;
         private readonly IServiceModelFactory<BlogPostDTO, BlogPost> blogModelFactory;
         private readonly IDateTimeWrapper dateTimeProvider;
 
-        public BlogPostService(IEntityRepository<BlogPost> blogPostRepo,
+        public BlogPostService(IBlogPostRepository blogPostRepo,
              IEntityStringIdGet<Author> authorRepo,
             IServiceListModelFactory<BlogPostDTO, IEnumerable<BlogPost>> blogSetModelFactory,
             IServiceModelFactory<BlogPostDTO, BlogPost> blogModelFactory,
@@ -48,7 +48,7 @@ namespace BS.Services.BlogPostService
 
             var editor = new BlogPostEditor()
             {
-                CreatedOn = DateTime.Now,
+                CreatedOn = this.dateTimeProvider.Now(),
                 EditorName = userName
             };
 

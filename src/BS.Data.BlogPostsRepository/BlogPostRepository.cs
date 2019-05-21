@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BS.Data.BlogPostsRepository
 {
-    public class BlogPostRepository : IEntityRepository<BlogPost>
+    public class BlogPostRepository : IBlogPostRepository
     {
         public BlogPostRepository(BlogSystemEFDbContext dbContext)
         {
@@ -38,7 +38,7 @@ namespace BS.Data.BlogPostsRepository
             return await this.DbContext.BlogPosts
                .Include(p => p.Author.AppUser)
                     .Include(p => p.BlogPostTag)
-                    .ThenInclude(c => c.Tag)
+                    .ThenInclude(c => c.Tag)                  
                     .Include(p => p.PostEditors)
                     .Where(p => !p.IsDeleted)
                .FirstOrDefaultAsync(m => m.Id == id);

@@ -7,12 +7,13 @@ namespace BS.Services.TagService.Abstract
 {
     public interface ITagService
     {
-        Task<IEnumerable<TagDetailsDTO>> GetAll(int id);
+        Task<TagSetDTO> GetAll(int id);
 
         Task<TagDetailsDTO> Get(int? id);
 
         Task Edit(int id, int tagId, string name, string userName);
 
-        Task Create(int id, string name, string userName, string authorId);
+        Task Create(int id, string name, int blogId);
+        Task Remove(int id);
     }
 }

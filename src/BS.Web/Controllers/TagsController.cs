@@ -25,9 +25,10 @@ namespace BS.Web.Controllers
     {
         private readonly BlogSystemEFDbContext _context;
         private readonly ITagService tagService;
-        private readonly IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory;
+        private readonly IModelFactory<TagSetViewModel, TagSetDTO> tagSetModelFactory;
         private readonly IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory;
         private readonly IModelFactory<TagEditViewModel, TagDetailsDTO> tagEditModelFactory;
+        private readonly IModelFactory<TagDeleteViewModel, TagDetailsDTO> tagDeleteModelFactory;
         private readonly IUserManagerWrapper<BaseIdentityUser> userManager;
         private readonly ILocalRedirector localRedirector;
         private readonly ILogger<TagsController> logger;
@@ -35,9 +36,10 @@ namespace BS.Web.Controllers
         public TagsController(
             BlogSystemEFDbContext context, 
             ITagService tagService,
-            IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory,
+            IModelFactory<TagSetViewModel, TagSetDTO> tagSetModelFactory,
             IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory,
              IModelFactory<TagEditViewModel, TagDetailsDTO> tagEditModelFactory,
+             IModelFactory<TagDeleteViewModel, TagDetailsDTO> tagDeleteModelFactory,
              IUserManagerWrapper<BaseIdentityUser> userManager,
              ILocalRedirector localRedirector,
             ILogger<TagsController> logger)
@@ -47,6 +49,7 @@ namespace BS.Web.Controllers
             this.tagSetModelFactory = tagSetModelFactory;
             this.tagModelFactory = tagModelFactory;
             this.tagEditModelFactory = tagEditModelFactory;
+            this.tagDeleteModelFactory = tagDeleteModelFactory;
             this.userManager = userManager;
             this.localRedirector = localRedirector;
             this.logger = logger;
@@ -117,10 +120,11 @@ namespace BS.Web.Controllers
         }
 
         // GET: Tags/Create
-        public IActionResult Create()
+        public IActionResult Create(int id)
         {
             var model = new TagCreateViewModel();
 
+            model.BlogPostId = id;
             model.BackgroundImage = "";
             model.HeaderTitle = "Create Tag";
             model.PageTitle = "Create Tag";
@@ -133,16 +137,14 @@ namespace BS.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name")] TagCreateViewModel tag)
+        public async Task<IActionResult> Create([Bind("Id,Name,BlogPostId")] TagCreateViewModel tag)
         {
             if (ModelState.IsValid)
             {
                 try
                 {
-                    //TODO : SET THIS TO SERVICE
-                    var user = await this.userManager.GetUserAsync(HttpContext.User);
-
-                    await this.tagService.Create(tag.Id, tag.Name, user.UserName, user.Id);
+                   
+                    await this.tagService.Create(tag.Id, tag.Name, tag.BlogPostId);
 
                     this.logger.LogInformation("New Tag is created");
 
@@ -251,19 +253,36 @@ namespace BS.Web.Controllers
         // GET: Tags/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
-            if (id == null)
+            try
             {
+                var serviceCall = await this.tagService.Get(id);
+
+                var blogPost = this.tagDeleteModelFactory.Create(serviceCall);
+
+                blogPost.BackgroundImage = "";
+                blogPost.HeaderTitle = "Delete Keyword";
+                blogPost.PageTitle = "Delete Keyword";
+
+                return View(blogPost);
+            }
+            catch (IdIsNullException ex)
+            {
+                this.logger.LogError(ex.Message);
+
                 return NotFound();
             }
-
-            var tag = await _context.Tags
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tag == null)
+            catch (EntityIsNullException ex)
             {
+                this.logger.LogError(ex.Message);
+
                 return NotFound();
             }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
 
-            return View(tag);
+                return NotFound();
+            }
         }
 
         // POST: Tags/Delete/5
@@ -271,10 +290,20 @@ namespace BS.Web.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
         {
-            var tag = await _context.Tags.FindAsync(id);
-            _context.Tags.Remove(tag);
-            await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            try
+            {
+                await this.tagService.Remove(id);
+
+                this.logger.LogInformation("Post Delete Confirmed");
+
+                return RedirectToLocal("Index", "Home");
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
         }
   
 
