@@ -33,9 +33,11 @@ namespace BS.Data.Tags.Repository
             throw new NotImplementedException("GET ALL TAGS IS NOT IMPLEMENTED");
         }
 
-        public Task Update(Tag updateObj)
+        public async Task Update(Tag updateObj)
         {
-            throw new NotImplementedException("UPDATE TAG IS NOT IMPLEMENTED");
+            this.DbContext.Tags.Update(updateObj);
+
+            await this.DbContext.SaveChangesAsync();
         }
     }
 }

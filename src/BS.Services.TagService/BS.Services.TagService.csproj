@@ -14,6 +14,7 @@
     <ProjectReference Include="..\BS.Services.ModelFactory.Abstract\BS.Services.ModelFactory.Abstract.csproj" />
     <ProjectReference Include="..\BS.Services.ServiceValidator\BS.Services.ServiceValidator.csproj" />
     <ProjectReference Include="..\BS.Services.TagService.Abstract\BS.Services.TagService.Abstract.csproj" />
+    <ProjectReference Include="..\DateTimeWrapper.Abstract\DateTimeWrapper.Abstract.csproj" />
   </ItemGroup>
 
 </Project>

@@ -130,6 +130,7 @@ namespace BS.Web
             services.AddScoped<IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> , WEB.TagModelFactory.TagListModelFactory>();
             services.AddScoped<IModelFactory<TagPageViewModel, TagDetailsDTO>, WEB.TagModelFactory.TagModelFactory>();
             services.AddScoped<IServiceModelFactory<TagDetailsDTO, Tag>, Services.TagService.ModelFactory.TagModelFactory>();
+            services.AddScoped<IModelFactory<TagEditViewModel, TagDetailsDTO>, TagEditModelFactory>();
 
 
 

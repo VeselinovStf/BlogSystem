@@ -15,14 +15,14 @@ namespace BS.Data.EFContext.DataSeed
                     new Tag()
                     {
                          Id = 1,
-                           CreatedOn = DateTime.Now,
-                            Name = "First Tag"
+                         CreatedOn = DateTime.Now,
+                          Name = "First Tag"
                     },
                      new Tag()
                     {
                          Id = 2,
-                           CreatedOn = DateTime.Now,
-                            Name = "Second Tag"
+                         CreatedOn = DateTime.Now,
+                         Name = "Second Tag"
                     }
              };
 

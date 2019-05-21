@@ -14,6 +14,9 @@ using Microsoft.Extensions.Logging;
 using BS.WEB.ModelFactory.Abstract;
 using BS.Services.TagService.ModelDTO;
 using BS.Services.ServiceValidator.Exceptions;
+using BS.Web.Utilities.LocalRedirector.Abstract;
+using BS.Identity.Manager.UserManager.Wrapper.Abstract;
+using BS.Identity.Models;
 
 namespace BS.Web.Controllers
 {
@@ -24,6 +27,9 @@ namespace BS.Web.Controllers
         private readonly ITagService tagService;
         private readonly IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory;
         private readonly IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory;
+        private readonly IModelFactory<TagEditViewModel, TagDetailsDTO> tagEditModelFactory;
+        private readonly IUserManagerWrapper<BaseIdentityUser> userManager;
+        private readonly ILocalRedirector localRedirector;
         private readonly ILogger<TagsController> logger;
 
         public TagsController(
@@ -31,12 +37,18 @@ namespace BS.Web.Controllers
             ITagService tagService,
             IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory,
             IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory,
+             IModelFactory<TagEditViewModel, TagDetailsDTO> tagEditModelFactory,
+             IUserManagerWrapper<BaseIdentityUser> userManager,
+             ILocalRedirector localRedirector,
             ILogger<TagsController> logger)
         {
             _context = context;
             this.tagService = tagService;
             this.tagSetModelFactory = tagSetModelFactory;
             this.tagModelFactory = tagModelFactory;
+            this.tagEditModelFactory = tagEditModelFactory;
+            this.userManager = userManager;
+            this.localRedirector = localRedirector;
             this.logger = logger;
         }
             
@@ -107,7 +119,13 @@ namespace BS.Web.Controllers
         // GET: Tags/Create
         public IActionResult Create()
         {
-            return View();
+            var model = new TagCreateViewModel();
+
+            model.BackgroundImage = "";
+            model.HeaderTitle = "Create Tag";
+            model.PageTitle = "Create Tag";
+
+            return View(model);
         }
 
         // POST: Tags/Create
@@ -115,14 +133,41 @@ namespace BS.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Name,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] Tag tag)
+        public async Task<IActionResult> Create([Bind("Id,Name")] TagCreateViewModel tag)
         {
             if (ModelState.IsValid)
             {
-                _context.Add(tag);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                try
+                {
+                    //TODO : SET THIS TO SERVICE
+                    var user = await this.userManager.GetUserAsync(HttpContext.User);
+
+                    await this.tagService.Create(tag.Id, tag.Name, user.UserName, user.Id);
+
+                    this.logger.LogInformation("New Tag is created");
+
+                    return RedirectToLocal("Index", "Home");
+                }
+                catch (EntityIsNullException ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+                catch (Exception ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
             }
+
             return View(tag);
         }
 
@@ -133,7 +178,7 @@ namespace BS.Web.Controllers
             {
                 var serviceCall = await this.tagService.Get(id);
 
-                var blogPost = this.tagModelFactory.Create(serviceCall);
+                var blogPost = this.tagEditModelFactory.Create(serviceCall);
 
                 blogPost.BackgroundImage = "";
                 blogPost.HeaderTitle = "Edit Keyword";
@@ -166,33 +211,40 @@ namespace BS.Web.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name,IsDeleted,DeletedOn,CreatedOn,ModifiedOn")] Tag tag)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] TagEditViewModel tag)
         {
-            if (id != tag.Id)
-            {
-                return NotFound();
-            }
-
             if (ModelState.IsValid)
             {
                 try
                 {
-                    _context.Update(tag);
-                    await _context.SaveChangesAsync();
+                    var user = await this.userManager.GetUserAsync(HttpContext.User);
+
+                    await this.tagService.Edit(id, tag.Id, tag.Name, user.UserName);
+
+                    this.logger.LogInformation("Editing Tag.");
+
+                    return RedirectToLocal("Index", "Home");
                 }
-                catch (DbUpdateConcurrencyException)
+                catch (EntityIsNullException ex)
                 {
-                    if (!TagExists(tag.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
                 }
-                return RedirectToAction(nameof(Index));
+                catch (DbUpdateConcurrencyException ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
+                catch (Exception ex)
+                {
+                    this.logger.LogError(ex.Message);
+
+                    return NotFound();
+                }
             }
+
             return View(tag);
         }
 
@@ -224,10 +276,11 @@ namespace BS.Web.Controllers
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }
+  
 
-        private bool TagExists(int id)
+        private IActionResult RedirectToLocal(string returnUrl, string controller = "Home", string action = "Index", string area = "")
         {
-            return _context.Tags.Any(e => e.Id == id);
+            return this.localRedirector.RedirectToLocal(this, Url, returnUrl, controller, action, area);
         }
     }
 }
