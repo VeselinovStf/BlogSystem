@@ -92,7 +92,8 @@ namespace BS.Web
 
             services.AddScoped<IEntityRepository<BlogPost>, BlogPostRepository>();
             services.AddScoped<IEntityStringIdGet<Author>, AuthorRepository>();
-            services.AddScoped<IEntityIntGetId<IEnumerable<Tag>>, TagRepository>();
+            services.AddScoped<IEntityIntGetId<IEnumerable<Tag>>, TagIdGetRepository>();
+            services.AddScoped<IEntityRepository<Tag>, TagRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -127,7 +128,10 @@ namespace BS.Web
             services.AddScoped<IServiceModelFactory<IEnumerable<TagDetailsDTO>, IEnumerable<Tag>>, Services.TagService.ModelFactory.TagListModelFactory>();
             services.AddScoped<ITagService, TagService>();
             services.AddScoped<IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> , WEB.TagModelFactory.TagListModelFactory>();
-           
+            services.AddScoped<IModelFactory<TagPageViewModel, TagDetailsDTO>, WEB.TagModelFactory.TagModelFactory>();
+            services.AddScoped<IServiceModelFactory<TagDetailsDTO, Tag>, Services.TagService.ModelFactory.TagModelFactory>();
+
+
 
         }
 

@@ -13,6 +13,7 @@ using BS.Services.TagService.Abstract;
 using Microsoft.Extensions.Logging;
 using BS.WEB.ModelFactory.Abstract;
 using BS.Services.TagService.ModelDTO;
+using BS.Services.ServiceValidator.Exceptions;
 
 namespace BS.Web.Controllers
 {
@@ -22,17 +23,20 @@ namespace BS.Web.Controllers
         private readonly BlogSystemEFDbContext _context;
         private readonly ITagService tagService;
         private readonly IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory;
+        private readonly IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory;
         private readonly ILogger<TagsController> logger;
 
         public TagsController(
             BlogSystemEFDbContext context, 
             ITagService tagService,
             IModelFactory<TagSetViewModel, IEnumerable<TagDetailsDTO>> tagSetModelFactory,
+            IModelFactory<TagPageViewModel, TagDetailsDTO> tagModelFactory,
             ILogger<TagsController> logger)
         {
             _context = context;
             this.tagService = tagService;
             this.tagSetModelFactory = tagSetModelFactory;
+            this.tagModelFactory = tagModelFactory;
             this.logger = logger;
         }
             
@@ -66,19 +70,38 @@ namespace BS.Web.Controllers
         // GET: Tags/Details/5
         public async Task<IActionResult> Details(int? id)
         {
-            if (id == null)
+            try
             {
+                var serviceCall = await this.tagService.Get(id);
+
+                var tag = this.tagModelFactory.Create(serviceCall);
+
+                tag.BackgroundImage = "";
+                tag.HeaderTitle = "Keyword Details";
+                tag.PageTitle = "Keyword Details";
+
+                this.logger.LogInformation("Displaying tag details.");
+
+                return View(tag);
+            }
+            catch (IdIsNullException ex)
+            {
+                this.logger.LogError(ex.Message);
+
                 return NotFound();
             }
-
-            var tag = await _context.Tags
-                .FirstOrDefaultAsync(m => m.Id == id);
-            if (tag == null)
+            catch (EntityIsNullException ex)
             {
+                this.logger.LogError(ex.Message);
+
                 return NotFound();
             }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
 
-            return View(tag);
+                return NotFound();
+            }
         }
 
         // GET: Tags/Create
@@ -106,17 +129,36 @@ namespace BS.Web.Controllers
         // GET: Tags/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
-            if (id == null)
+            try
             {
-                return NotFound();
-            }
+                var serviceCall = await this.tagService.Get(id);
 
-            var tag = await _context.Tags.FindAsync(id);
-            if (tag == null)
+                var blogPost = this.tagModelFactory.Create(serviceCall);
+
+                blogPost.BackgroundImage = "";
+                blogPost.HeaderTitle = "Edit Keyword";
+                blogPost.PageTitle = "Edit Keyword";
+
+                return View(blogPost);
+            }
+            catch (IdIsNullException ex)
             {
+                this.logger.LogError(ex.Message);
+
                 return NotFound();
             }
-            return View(tag);
+            catch (EntityIsNullException ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
+            catch (Exception ex)
+            {
+                this.logger.LogError(ex.Message);
+
+                return NotFound();
+            }
         }
 
         // POST: Tags/Edit/5

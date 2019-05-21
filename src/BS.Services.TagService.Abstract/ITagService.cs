@@ -8,5 +8,7 @@ namespace BS.Services.TagService.Abstract
     public interface ITagService
     {
         Task<IEnumerable<TagDetailsDTO>> GetAll(int id);
+
+        Task<TagDetailsDTO> Get(int? id);
     }
 }

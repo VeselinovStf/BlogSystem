@@ -4,48 +4,38 @@ using BS.Data.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace BS.Data.Tags.Repository
 {
-    public class TagRepository : IEntityIntGetId<IEnumerable<Tag>>//, IEntityRepository<Tag>,
+    public class TagRepository : IEntityRepository<Tag>
     {
-
-         public TagRepository(BlogSystemEFDbContext dbContext)
+        public TagRepository(BlogSystemEFDbContext dbContext)
         {
             DbContext = dbContext;
         }
 
         public BlogSystemEFDbContext DbContext { get; }
-
-        public async Task<IEnumerable<Tag>> Get(int? id)
+        public Task Add(Tag model)
         {
-            return await this.DbContext.BlogPostTags
-                .Where(t => t.BlogPostId == id)
-                .Select(t => t.Tag)
-                .Where(t => !t.IsDeleted)
-                .ToListAsync();
+            throw new NotImplementedException("ADD TAG IS NOT IMPLEMENTED");
         }
 
-        //public async Task Add(Tag model)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public async Task<Tag> Get(int? id)
+        {
+            return await this.DbContext.Tags
+                .FirstOrDefaultAsync(t => t.Id == id);
+        }
 
-        //public async Task<Tag> Get(int? id)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task<IEnumerable<Tag>> GetAll()
+        {
+            throw new NotImplementedException("GET ALL TAGS IS NOT IMPLEMENTED");
+        }
 
-        //public async Task<IEnumerable<Tag>> GetAll()
-        //{
-           
-        //}
-
-        //public Task Update(Tag updateObj)
-        //{
-        //    throw new NotImplementedException();
-        //}
+        public Task Update(Tag updateObj)
+        {
+            throw new NotImplementedException("UPDATE TAG IS NOT IMPLEMENTED");
+        }
     }
 }
