@@ -10,5 +10,7 @@ namespace BS.WEB.ViewModels.ViewComponents
         public string PageTitle { get; set; }
         public string BackgroundImage { get; set; }
         public string HeaderTitle { get; set; }
+
+       
     }
 }

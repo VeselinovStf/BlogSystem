@@ -45,6 +45,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using BS.WEB.TagModelFactory;
 using BS.Data.BlogPostTag.Repository;
+using BS.Data.Search.Repository;
+using BS.Services.BlogSearchService.Abstract;
+using BS.Services.BlogSearchService;
+using BS.Service.BlogSearch.ModelFactory;
+using BS.Service.BlogSearchService.DTO;
+using BS.WEB.SearchModelFactory;
 
 namespace BS.Web
 {
@@ -97,6 +103,7 @@ namespace BS.Web
             services.AddScoped<IEntityRepository<Tag>, TagRepository>();
             services.AddScoped<IEntityAddReturnRepository<Tag>, TagAddReturnRepository>();
             services.AddScoped<IEntityAddRepository<BlogPostTag>, BlogPostTagRepository>();
+            services.AddScoped<ISearchRepository<BlogPost>, SearchRepository>();
         }
 
         private void ConfigureIdentity(IServiceCollection services)
@@ -135,7 +142,10 @@ namespace BS.Web
             services.AddScoped<IServiceModelFactory<TagDetailsDTO, Tag>, Services.TagService.ModelFactory.TagModelFactory>();
             services.AddScoped<IModelFactory<TagEditViewModel, TagDetailsDTO>, TagEditModelFactory>();
             services.AddScoped<IModelFactory<TagDeleteViewModel, TagDetailsDTO>, TagDeleteModelFactory>();
-
+            //Search
+            services.AddScoped<IServiceListModelFactory<SearchBlogPostResultDTO, IEnumerable<BlogPost>>, ResultBlogPostModelFactory>();
+            services.AddScoped<IBlogSearchService, BlogSearchService>();
+            services.AddScoped<IModelFactory<BlogPostSetViewModel, IEnumerable<SearchBlogPostResultDTO>>, SearchModelFactory>();
 
 
         }

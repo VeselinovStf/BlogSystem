@@ -29,6 +29,7 @@
     <ProjectReference Include="..\BS.Data.BlogPostTag.Repository\BS.Data.BlogPostTag.Repository.csproj" />
     <ProjectReference Include="..\BS.Data.EFContext\BS.Data.EFContext.csproj" />
     <ProjectReference Include="..\BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Data.Search.Repository\BS.Data.Search.Repository.csproj" />
     <ProjectReference Include="..\BS.Data.Tags.Repository\BS.Data.Tags.Repository.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManager.Wrapper.Abstract\BS.Identity.Manager.SignInManager.Wrapper.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Manager.SignInManagerUtility\BS.Identity.Manager.SignInManagerUtility.csproj" />
@@ -37,10 +38,13 @@
     <ProjectReference Include="..\BS.Identity.Models\BS.Identity.Models.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService.Abstract\BS.Identity.Service.BaseIdentityUserService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Identity.Service.BaseIdentityUserService\BS.Identity.Service.BaseIdentityUserService.csproj" />
+    <ProjectReference Include="..\BS.Service.BlogSearch.ModelFactory\BS.Service.BlogSearch.ModelFactory.csproj" />
     <ProjectReference Include="..\BS.Services.BlogPostService.Abstract\BS.Services.BlogPostService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Services.BlogPostService.ModelDTO\BS.Services.BlogPostService.ModelDTO.csproj" />
     <ProjectReference Include="..\BS.Services.BlogPostService.ModelFactory\BS.Services.BlogPostService.ModelFactory.csproj" />
     <ProjectReference Include="..\BS.Services.BlogPostService\BS.Services.BlogPostService.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogSearchService.Abstract\BS.Services.BlogSearchService.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogSearchService\BS.Services.BlogSearchService.csproj" />
     <ProjectReference Include="..\BS.Services.TagService.Abstract\BS.Services.TagService.Abstract.csproj" />
     <ProjectReference Include="..\BS.Services.TagService.ModelFactory\BS.Services.TagService.ModelFactory.csproj" />
     <ProjectReference Include="..\BS.Services.TagService\BS.Services.TagService.csproj" />
@@ -48,6 +52,7 @@
     <ProjectReference Include="..\BS.WEB.AccountControllerValidation\BS.WEB.AccountControllerValidation.csproj" />
     <ProjectReference Include="..\BS.WEB.BlogPostModelFactory\BS.WEB.BlogPostModelFactory.csproj" />
     <ProjectReference Include="..\BS.WEB.ModelFactory.Abstract\BS.WEB.ModelFactory.Abstract.csproj" />
+    <ProjectReference Include="..\BS.WEB.SearchModelFactory\BS.WEB.SearchModelFactory.csproj" />
     <ProjectReference Include="..\BS.WEB.TagModelFactory\BS.WEB.TagModelFactory.csproj" />
     <ProjectReference Include="..\BS.WEB.ViewModels\BS.WEB.ViewModels.csproj" />
     <ProjectReference Include="..\DateTimeProvider\DateTimeProvider.csproj" />

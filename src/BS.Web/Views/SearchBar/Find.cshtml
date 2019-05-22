@@ -1,0 +1,16 @@
+﻿@model BlogPostSetViewModel
+@await Component.InvokeAsync("PageHeader",
+    new
+    {
+        model = new PageHeaderViewModel()
+        {
+            BackgroundImage = Model.BackgroundImage,
+        HeaderTitle = Model.HeaderTitle,
+        PageTitle = Model.PageTitle
+        }
+    })
+@{
+    ViewData["Title"] = Model.PageTitle;
+}
+
+@await Component.InvokeAsync("BlogPostSet", Model.Posts)

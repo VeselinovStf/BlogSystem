@@ -14,17 +14,26 @@
     );
     function searchData(val) {
         $('#search-result-container').show();   
-        
+        var urlGet = '/SearchBar/Search?Key=';
+        var urlFind = '/SearchBar/Find?Key=';
         $.ajax({
-            url: '/SearchBar/searchresult?prefixtext=' + val,
+            url: urlGet + val,
             contentType: "application/json",
             type: 'GET',
             dataType: 'json',
-            success: function (result) {              
-                //$('#search-result-container').html("<div>" + result + "</div><hr/>");
-                $.each(result, function (i, item) { $('#search-result-container').append("<div><a asp-controller=\"Search\" asp-action=\"Display\" asp-rout-id=\"THE_ID\">" + result[i] + "</a></div><hr/>"); })
-               
+            success: function (result) {   
+                console.log(result);
+                $.each(result, function (key, value) {
+
+                    $('#search-result-container').html("<div><a href=\"" + urlFind + value + "\">" + "Do you mean: " + value + "</a></div><hr/>");
+                })
+                              
+                $.each(result, function (i, item) {
+                    $('#search-result-container').append("<div><a href=\"" + urlFind + item + "\">" + item + "</a></div><hr/>");
+                })
+
             }
         })
     }
+   
 });

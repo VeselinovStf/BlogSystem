@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\BS.Data.EntityRepository.Abstract\BS.Data.EntityRepository.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Data.Models\BS.Data.Models.csproj" />
+    <ProjectReference Include="..\BS.Services.BlogSearchService.Abstract\BS.Services.BlogSearchService.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Services.ModelFactory.Abstract\BS.Services.ModelFactory.Abstract.csproj" />
+    <ProjectReference Include="..\BS.Services.ServiceValidator\BS.Services.ServiceValidator.csproj" />
+  </ItemGroup>
+
+</Project>

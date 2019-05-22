@@ -135,23 +135,41 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPost", "BlogPost", "{2C
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tags", "Tags", "{95452D46-6B36-454B-A6AB-DB7C33CD2A12}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.Tags.Repository", "BS.Data.Tags.Repository\BS.Data.Tags.Repository.csproj", "{61913139-701F-4CC2-8B97-F602493749AC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.Tags.Repository", "BS.Data.Tags.Repository\BS.Data.Tags.Repository.csproj", "{61913139-701F-4CC2-8B97-F602493749AC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.TagService.Abstract", "BS.Services.TagService.Abstract\BS.Services.TagService.Abstract.csproj", "{BA402A6A-F7FF-46F0-B37C-6EB46AC77909}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.TagService.Abstract", "BS.Services.TagService.Abstract\BS.Services.TagService.Abstract.csproj", "{BA402A6A-F7FF-46F0-B37C-6EB46AC77909}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.TagService", "BS.Services.TagService\BS.Services.TagService.csproj", "{0A234CCE-72A2-47D6-A165-F66DBD885D7A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.TagService", "BS.Services.TagService\BS.Services.TagService.csproj", "{0A234CCE-72A2-47D6-A165-F66DBD885D7A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.TagService.ModelDTO", "BS.Services.TagService.ModelDTO\BS.Services.TagService.ModelDTO.csproj", "{9BE88E63-8F6C-4C1A-8576-AB813118DE5D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.TagService.ModelDTO", "BS.Services.TagService.ModelDTO\BS.Services.TagService.ModelDTO.csproj", "{9BE88E63-8F6C-4C1A-8576-AB813118DE5D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.TagService.ModelFactory", "BS.Services.TagService.ModelFactory\BS.Services.TagService.ModelFactory.csproj", "{3CC012F4-2BA5-4BCF-8884-28B43DB61577}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Services.TagService.ModelFactory", "BS.Services.TagService.ModelFactory\BS.Services.TagService.ModelFactory.csproj", "{3CC012F4-2BA5-4BCF-8884-28B43DB61577}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tag", "Tag", "{F91EE4A7-6A8C-4DF5-8A69-CA9C32B1509D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.TagModelFactory", "BS.WEB.TagModelFactory\BS.WEB.TagModelFactory.csproj", "{8DFF6CCB-BAF1-45BC-B31A-884C5619D6E0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.WEB.TagModelFactory", "BS.WEB.TagModelFactory\BS.WEB.TagModelFactory.csproj", "{8DFF6CCB-BAF1-45BC-B31A-884C5619D6E0}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BlogPostTag", "BlogPostTag", "{C2B6A6CB-066F-459C-9D06-26B0B7A0392D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.BlogPostTag.Repository", "BS.Data.BlogPostTag.Repository\BS.Data.BlogPostTag.Repository.csproj", "{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BS.Data.BlogPostTag.Repository", "BS.Data.BlogPostTag.Repository\BS.Data.BlogPostTag.Repository.csproj", "{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogSearchService.Abstract", "BS.Services.BlogSearchService.Abstract\BS.Services.BlogSearchService.Abstract.csproj", "{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Service.BlogSearchService.DTO", "BS.Service.BlogSearchService.DTO\BS.Service.BlogSearchService.DTO.csproj", "{629B7897-7051-49B5-AB51-008C34B17DBF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Service.BlogSearch.ModelFactory", "BS.Service.BlogSearch.ModelFactory\BS.Service.BlogSearch.ModelFactory.csproj", "{09BF81E4-9867-4A3D-AB1F-E1036F262503}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Services.BlogSearchService", "BS.Services.BlogSearchService\BS.Services.BlogSearchService.csproj", "{EF8C626D-8215-4365-9A10-DAEC5B781DC9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.Data.Search.Repository", "BS.Data.Search.Repository\BS.Data.Search.Repository.csproj", "{45C25A4E-E9A5-4668-9C5D-3D33962A313A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{A6936B64-1981-4DFE-980E-BFBB6F487899}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Search", "Search", "{9E328C22-AA90-46A3-933B-E6533191D7D9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BS.WEB.SearchModelFactory", "BS.WEB.SearchModelFactory\BS.WEB.SearchModelFactory.csproj", "{A0A25728-D05D-480C-99A6-FC93698AFAD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -315,6 +333,30 @@ Global
 		{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{629B7897-7051-49B5-AB51-008C34B17DBF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{629B7897-7051-49B5-AB51-008C34B17DBF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{629B7897-7051-49B5-AB51-008C34B17DBF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{629B7897-7051-49B5-AB51-008C34B17DBF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09BF81E4-9867-4A3D-AB1F-E1036F262503}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09BF81E4-9867-4A3D-AB1F-E1036F262503}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09BF81E4-9867-4A3D-AB1F-E1036F262503}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09BF81E4-9867-4A3D-AB1F-E1036F262503}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EF8C626D-8215-4365-9A10-DAEC5B781DC9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EF8C626D-8215-4365-9A10-DAEC5B781DC9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EF8C626D-8215-4365-9A10-DAEC5B781DC9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EF8C626D-8215-4365-9A10-DAEC5B781DC9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{45C25A4E-E9A5-4668-9C5D-3D33962A313A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{45C25A4E-E9A5-4668-9C5D-3D33962A313A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{45C25A4E-E9A5-4668-9C5D-3D33962A313A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{45C25A4E-E9A5-4668-9C5D-3D33962A313A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A0A25728-D05D-480C-99A6-FC93698AFAD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A0A25728-D05D-480C-99A6-FC93698AFAD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A0A25728-D05D-480C-99A6-FC93698AFAD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A0A25728-D05D-480C-99A6-FC93698AFAD7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -391,6 +433,15 @@ Global
 		{8DFF6CCB-BAF1-45BC-B31A-884C5619D6E0} = {F91EE4A7-6A8C-4DF5-8A69-CA9C32B1509D}
 		{C2B6A6CB-066F-459C-9D06-26B0B7A0392D} = {BCD51DDF-A106-44C6-91D3-93130A7F05D5}
 		{9DD34335-DEB6-4713-9C93-9DE3A8BF2FCE} = {C2B6A6CB-066F-459C-9D06-26B0B7A0392D}
+		{E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E} = {91929894-276F-4CCD-9D05-86BCE833E278}
+		{D0EFDFF3-FCF3-436B-A6C2-A43E0CC2ED9A} = {E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E}
+		{629B7897-7051-49B5-AB51-008C34B17DBF} = {E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E}
+		{09BF81E4-9867-4A3D-AB1F-E1036F262503} = {E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E}
+		{EF8C626D-8215-4365-9A10-DAEC5B781DC9} = {E1B61CAD-0EB4-47A6-BC34-3D956F3FB06E}
+		{45C25A4E-E9A5-4668-9C5D-3D33962A313A} = {A6936B64-1981-4DFE-980E-BFBB6F487899}
+		{A6936B64-1981-4DFE-980E-BFBB6F487899} = {BCD51DDF-A106-44C6-91D3-93130A7F05D5}
+		{9E328C22-AA90-46A3-933B-E6533191D7D9} = {28FEC7E5-6DB9-4757-BF61-1941CEBB0B86}
+		{A0A25728-D05D-480C-99A6-FC93698AFAD7} = {9E328C22-AA90-46A3-933B-E6533191D7D9}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {4E6E7ECC-E7D3-429D-940B-075E25E41A0F}

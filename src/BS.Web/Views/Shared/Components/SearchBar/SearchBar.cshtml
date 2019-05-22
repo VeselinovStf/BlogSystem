@@ -1,17 +1,7 @@
 ﻿<!-- Search Widget -->
-@*<div class="col-md-4 float-right">
-        <div class="card my-4">
-            <div class="card-body">
-                <div class="input-group search-form" role="search" method="get">
-                    <input type="search" class="form-control search-field" value="" placeholder="Search for..." id="test" title="Search">
-                    <span class="input-group-btn">
-                        <input class="btn btn-secondary search-submit" type="submit">Go!</input>
-                    </span>
-                </div>
-            </div>
-        </div>
-    </div>*@
-    <style>
+@model PageHeaderViewModel
+
+@*<style>
         #search-data {
             padding: 10px;
             border: solid 1px #BDC7D8;
@@ -39,4 +29,88 @@
         </div>
         <div id="search-result-container" style="border:solid 1px #BDC7D8;display:none; ">
         </div>
-    </div>
+    </div>*@
+
+
+@*<link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>*@
+@*<script type="text/javascript">
+
+        $(document).ready(function () {
+            $("#CityName").autocomplete({
+                source: function (request, response) {
+                    $.ajax({
+                        url: "/SearchBar/Index?Prefix=" + request.term,
+                        type: "GET",
+                        dataType: "json",
+
+                        success: function (data) {
+                            response($.map(data, function (item) {
+                                return { label: item.CityName, value: item.CityName};
+                            }))
+
+                        }
+                    })
+                },
+                messages: {
+                    noResults: "", results: ""
+                }
+            });
+        })
+    </script>
+    @using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+
+            <hr />
+
+            <div class="form-group">
+
+                <div class="col-md-12">
+                    @Html.EditorFor(model => model.City.CityName, new { htmlAttributes = new { @class = "form-control" } })
+                    <input id="CityName" />
+                </div>
+            </div>
+
+        </div>
+    }*@
+<script src="jquery-3.2.1.min.js"></script>
+<style>
+#search-data{
+ padding: 10px;
+ border: solid 1px #BDC7D8; 
+ margin-bottom: 20px; 
+ display: inline;
+ width: 80%;
+ 
+}
+.search-result{
+ border-bottom:solid 1px #BDC7D8;
+ padding:10px;
+ font-family:Times New Roman;
+ font-size: 20px;color:blue; 
+}
+#display-button{
+ position:relative;
+ width:80px;
+ height:38px;
+ float:right;
+ left:-55px;
+ text-align:center;
+ float:right;
+ left:-55px;
+ background-color:#4683ea; 
+}
+
+</style>
+<div class="col-md-12"  id="search-box-container">
+   
+    <input type="text" id="search-data" name="searchData" placeholder="Find Post by Keyword or Title..." autocomplete="off" />
+    
+</div>
+
+<div id="search-result-container" style="border:solid 1px #BDC7D8;display:none; ">
+</div>
